@@ -14,6 +14,10 @@ class VideoJsController {
     final html.Element scriptElement = html.ScriptElement()
       ..id = "videojs"
       ..innerHtml = VideoJsScripts().videojsCode(playerId, videoJsOptions!.toJson());
+    html.Element? ele = html.querySelector("#videojs");
+    if (html.querySelector("#videojs") != null) {
+      ele!.remove();
+    }
     html.querySelector('body')!.children.add(scriptElement);
     VideoObservers().listenToValueFromJs(playerId, 'onReady', onReady);
   }

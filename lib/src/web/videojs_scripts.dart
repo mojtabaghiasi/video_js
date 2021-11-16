@@ -15,7 +15,7 @@ class VideoJsScripts {
   // [height]
   // Sets the display height of the video player in pixels.
   String videojsCode(String playerId, Map<String, dynamic>? options) => """
-    $playerId = videojs('$playerId', ${options.toString()},function() {
+    var player = videojs('$playerId', ${options},function() {
     callBackToDartSide('$playerId', 'onReady' , 'true');
     });""";
 
@@ -48,7 +48,7 @@ class VideoJsScripts {
 
   String dispose(String playerId) => """
     var player = videojs('$playerId');
-    player.dispose();""";
+    if(!player.isDisposed()){ player.dispose();}""";
 
   // String isDispose(String playerId) => """
   //   '$playerId'.isDisposed();""";

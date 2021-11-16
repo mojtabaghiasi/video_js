@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:videojs/src/web/videojs_controller.dart';
 import 'package:videojs/src/web/videojs_scripts.dart';
@@ -19,30 +21,23 @@ class VideoJsWidget extends StatefulWidget {
 }
 
 class VideoJsWidgetState extends State<VideoJsWidget> {
+
+  String elementId = Random().nextInt(1000).toString();
+
+  @override
+  void dispose() {
+    super.dispose();
+    widget.videoJsController.dispose();
+    html.Element? ele = html.querySelector("#divId");
+    if (html.querySelector("#divId") != null) {
+      ele!.remove();
+    }
+  }
+
   @override
   void initState() {
     super.initState();
 
-    // ignore: undefined_prefixed_name
-    ui.platformViewRegistry.registerViewFactory(widget.videoJsController.playerId, (int id) {
-      final html.Element htmlElement = html.DivElement()
-        ..id = "div"
-        ..children = [
-          html.VideoElement()
-            ..id = widget.videoJsController.playerId
-            ..preload = "auto"
-            ..controls = true
-            ..style.minHeight = "100%"
-            ..style.minHeight = "100%"
-            ..style.width = "100%"
-            ..style.height = "auto"
-            ..className = "video-js vjs-default-skin"
-            ..dataset = {},
-          html.ScriptElement()
-          ..innerHtml = VideoJsScripts().videojsCode(widget.videoJsController.playerId, getVideoJsOptions(widget.videoJsController.videoJsOptions))
-        ];
-      return htmlElement;
-    });
   }
 
 
@@ -54,11 +49,36 @@ class VideoJsWidgetState extends State<VideoJsWidget> {
 
   @override
   Widget build(BuildContext context) {
+
+    // html.Element? ele = html.querySelector("#${widget.videoJsController.playerId}");
+    // if (html.querySelector("#${widget.videoJsController.playerId}") != null) {
+    //   ele!.remove();
+    // }
+    // ignore: undefined_prefixed_name
+    ui.platformViewRegistry.registerViewFactory(elementId, (int id) {
+      final html.Element htmlElement = html.DivElement()
+        ..id = "divId"
+        ..children = [
+          html.VideoElement()
+            ..id = widget.videoJsController.playerId
+          // ..preload = "auto"
+          // ..controls = true
+            ..style.minHeight = "100%"
+            ..style.minHeight = "100%"
+            ..style.width = "100%"
+            ..style.height = "auto"
+            ..className = "video-js vjs-default-skin"
+            ..dataset = {},
+          html.ScriptElement()
+            ..innerHtml = VideoJsScripts().videojsCode(widget.videoJsController.playerId, getVideoJsOptions(widget.videoJsController.videoJsOptions))
+        ];
+      return htmlElement;
+    });
     return SizedBox(
       width: widget.width,
       height: widget.height,
       child: HtmlElementView(
-        viewType: widget.videoJsController.playerId,
+        viewType: elementId,
       ),
     );
   }

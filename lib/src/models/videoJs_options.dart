@@ -1,9 +1,9 @@
 import 'package:videojs/src/models/source.dart';
 
 class VideoJsOptions {
-  // Determines whether or not the player has controls that the user can interact with.
-  //Without controls the only way to start the video playing is with the autoplay attribute
-  //or through the Player API.
+  /// Determines whether or not the player has controls that the user can interact with.
+  /// Without controls the only way to start the video playing is with the autoplay attribute
+  /// or through the Player API.
   final bool? controls;
 
   //Causes the video to start over as soon as it ends.
@@ -15,24 +15,6 @@ class VideoJsOptions {
   // A URL to an image that displays before the video begins playing. This is often a frame
   //of the video or a custom title screen. As soon as the user hits "play" the image will go away.
   final String? poster;
-
-  //Suggests to the browser whether or not the video data should begin downloading as soon
-  //as the <video> element is loaded. Supported values are:
-  //'auto'
-  //Start loading the video immediately (if the browser supports it). Some mobile devices
-  //will not preload thevideo in order to protect their users' bandwidth/data usage. This is
-  //why the value is called 'auto' and not something more conclusive like 'true'.
-  //This tends to be the most common and recommended value as it allows the browser to choose
-  //the best behavior.
-  //'metadata'
-  //Load only the meta data of the video, which includes information like the duration and dimensions
-  //of the video. Sometimes, the meta data will be loaded by downloading a few frames of video.
-  //'none'
-  // Don't preload any data. The browser will wait until the user hits "play" to begin downloading.
-  final String? preload;
-
-  //The source URL to a video source to embed.
-  final String? src;
 
   //Puts the player in fluid mode and the value is used when calculating the dynamic size of the player.
   //The value should represent a ratio - two numbers separated by a colon (e.g. "16:9" or "4:3").
@@ -83,8 +65,6 @@ class VideoJsOptions {
       this.loop,
       this.muted,
       this.poster,
-      this.preload,
-      this.src,
       this.aspectRatio,
       this.fluid,
       this.language,
@@ -101,13 +81,11 @@ class VideoJsOptions {
     if(this.controls != null) data['controls'] = this.controls;
     if(this.loop != null) data['loop'] = this.loop;
     if(this.muted != null) data['muted'] = this.muted;
-    if(this.poster != null) data['poster'] = this.poster;
-    if(this.preload != null) data['preload'] = this.preload;
-    if(this.src != null) data['src'] = this.src;
-    if(this.aspectRatio != null) data['aspectRatio'] = this.aspectRatio;
-    if(this.language != null) data['language'] = this.language;
+    if(this.poster != null) data['poster'] = "\"${this.poster}\"";
+    if(this.aspectRatio != null) data['aspectRatio'] = "\"${this.aspectRatio}\"";
+    if(this.language != null) data['language'] = "\"${this.language}\"";
     if(this.liveui != null) data['liveui'] = this.liveui;
-    if(this.notSupportedMessage != null) data['notSupportedMessage'] = this.notSupportedMessage;
+    if(this.notSupportedMessage != null) data['notSupportedMessage'] = "\"${this.notSupportedMessage}\"";
     if(this.playbackRates != null) data['playbackRates'] = this.playbackRates;
     if(this.preferFullWindow != null) data['preferFullWindow'] = this.preferFullWindow;
     if(this.responsive != null) data['responsive'] = this.responsive;
