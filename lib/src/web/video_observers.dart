@@ -24,10 +24,10 @@ class VideoObservers{
   listenToValueFromJs(String playerId, String type, Function(String) onJsValue) {
     StreamSubscription? subscription;
     subscription = VideoObservers().onVolumeFromJsStream.stream.listen((ResulteFromVideoJs resulteFromVideoJs) {
-      // if (playerId == resulteFromVideoJs.videoId && type == resulteFromVideoJs.type) {
+      if (playerId == resulteFromVideoJs.videoId && type == resulteFromVideoJs.type) {
         onJsValue(resulteFromVideoJs.resulte);
         subscription!.cancel();
-      // }
+      }
     });
   }
 

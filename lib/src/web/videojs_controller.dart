@@ -10,7 +10,8 @@ class VideoJsController {
 
   VideoJsController(this.playerId, {this.videoJsOptions});
 
-  videojs(Function(String) onReady, {VideoJsOptions? videoJsOptions}) {
+  /// This function is for initial a video.js instance with options
+  videoJs(Function(String) onReady, {VideoJsOptions? videoJsOptions}) {
     final html.Element scriptElement = html.ScriptElement()
       ..id = "videojs"
       ..innerHtml = VideoJsScripts().videojsCode(playerId, videoJsOptions!.toJson());
@@ -22,8 +23,8 @@ class VideoJsController {
     VideoObservers().listenToValueFromJs(playerId, 'onReady', onReady);
   }
 
-  //to set video source by type
-  //[type] can be video/mp4, video/webm, application/x-mpegURL (for hls videos), ...
+  /// to set video source by type
+  /// [type] can be video/mp4, video/webm, application/x-mpegURL (for hls videos), ...
   setSRC(String src, {required String type}) {
     final html.Element scriptElement = html.ScriptElement()
       ..id = "setSRC"
@@ -35,6 +36,7 @@ class VideoJsController {
     html.querySelector('body')!.children.add(scriptElement);
   }
 
+  /// To get volume of video
   getVolume(Function(String) onVolumeRecive) {
     final html.Element scriptElement = html.ScriptElement()
       ..id = "getVolume"
@@ -47,6 +49,7 @@ class VideoJsController {
     VideoObservers().listenToValueFromJs(playerId, 'getVolume', onVolumeRecive);
   }
 
+  /// set volume to video player
   setVolume(String volume) {
     final html.Element scriptElement = html.ScriptElement()
       ..id = "setVolume"
@@ -58,6 +61,7 @@ class VideoJsController {
     html.querySelector('body')!.children.add(scriptElement);
   }
 
+  /// toggle mute in video player. if player is mute, makes unmute and if is unmute makes mute
   toggleMute() {
     final html.Element scriptElement = html.ScriptElement()
       ..id = "toggleMute"
@@ -69,6 +73,7 @@ class VideoJsController {
     html.querySelector('body')!.children.add(scriptElement);
   }
 
+  /// this function is for check video player mute status
   isMute(Function(String) onMuteStatus) {
     final html.Element scriptElement = html.ScriptElement()
       ..id = "isMute"
@@ -81,6 +86,8 @@ class VideoJsController {
     VideoObservers().listenToValueFromJs(playerId, 'isMute', onMuteStatus);
   }
 
+  /// toggle full screen in video player. this function is different with requestFullScreen,
+  /// this function just change type
   toggleFullScreen() {
     final html.Element scriptElement = html.ScriptElement()
       ..id = "toggleFullScreen"
@@ -92,6 +99,7 @@ class VideoJsController {
     html.querySelector('body')!.children.add(scriptElement);
   }
 
+  /// this function is for check video player full screen status
   isFullScreen(Function(String) onFullScreenStatus) {
     final html.Element scriptElement = html.ScriptElement()
       ..id = "isFullScreen"
@@ -104,6 +112,7 @@ class VideoJsController {
     VideoObservers().listenToValueFromJs(playerId, 'isFull', onFullScreenStatus);
   }
 
+  /// To change player to full screen mode
   requestFullScreen() {
     final html.Element scriptElement = html.ScriptElement()
       ..id = "requestFullScreen"
@@ -115,7 +124,8 @@ class VideoJsController {
     html.querySelector('body')!.children.add(scriptElement);
   }
 
-  exiteFullScreen() {
+  /// To exit from full screen mode
+  exitFullScreen() {
     final html.Element scriptElement = html.ScriptElement()
       ..id = "exiteFullScreen"
       ..innerHtml = VideoJsScripts().exitFullscreen(playerId);
@@ -126,6 +136,7 @@ class VideoJsController {
     html.querySelector('body')!.children.add(scriptElement);
   }
 
+  /// play video
   play() {
     final html.Element scriptElement = html.ScriptElement()
       ..id = "play"
@@ -137,6 +148,7 @@ class VideoJsController {
     html.querySelector('body')!.children.add(scriptElement);
   }
 
+  /// pause video
   pause() {
     final html.Element scriptElement = html.ScriptElement()
       ..id = "pause"
@@ -148,6 +160,7 @@ class VideoJsController {
     html.querySelector('body')!.children.add(scriptElement);
   }
 
+  /// To check video player pause status
   isPaused(Function(String) onPauseStatus) {
     final html.Element scriptElement = html.ScriptElement()
       ..id = "isPaused"
@@ -160,6 +173,7 @@ class VideoJsController {
     VideoObservers().listenToValueFromJs(playerId, 'isPaused', onPauseStatus);
   }
 
+  /// To get video's current playing time in seconds
   currentTime(Function(String) onCurrentTime) {
     final html.Element scriptElement = html.ScriptElement()
       ..id = "currentTime"
@@ -172,6 +186,7 @@ class VideoJsController {
     VideoObservers().listenToValueFromJs(playerId, 'getCurrent', onCurrentTime);
   }
 
+  /// Set video
   setCurrentTime(String CurrentTime) {
     final html.Element scriptElement = html.ScriptElement()
       ..id = "setCurrentTime"

@@ -37,7 +37,24 @@ class VideoJsWidgetState extends State<VideoJsWidget> {
   @override
   void initState() {
     super.initState();
-
+    // ignore: undefined_prefixed_name
+    ui.platformViewRegistry.registerViewFactory(elementId, (int id) {
+      final html.Element htmlElement = html.DivElement()
+        ..id = "divId"
+        ..children = [
+          html.VideoElement()
+            ..id = widget.videoJsController.playerId
+            ..style.minHeight = "100%"
+            ..style.minHeight = "100%"
+            ..style.width = "100%"
+            ..style.height = "100%"
+            ..className = "video-js vjs-default-skin"
+            ..dataset = {},
+          html.ScriptElement()
+            ..innerHtml = VideoJsScripts().videojsCode(widget.videoJsController.playerId, getVideoJsOptions(widget.videoJsController.videoJsOptions))
+        ];
+      return htmlElement;
+    });
   }
 
 
@@ -50,30 +67,6 @@ class VideoJsWidgetState extends State<VideoJsWidget> {
   @override
   Widget build(BuildContext context) {
 
-    // html.Element? ele = html.querySelector("#${widget.videoJsController.playerId}");
-    // if (html.querySelector("#${widget.videoJsController.playerId}") != null) {
-    //   ele!.remove();
-    // }
-    // ignore: undefined_prefixed_name
-    ui.platformViewRegistry.registerViewFactory(elementId, (int id) {
-      final html.Element htmlElement = html.DivElement()
-        ..id = "divId"
-        ..children = [
-          html.VideoElement()
-            ..id = widget.videoJsController.playerId
-          // ..preload = "auto"
-          // ..controls = true
-            ..style.minHeight = "100%"
-            ..style.minHeight = "100%"
-            ..style.width = "100%"
-            ..style.height = "auto"
-            ..className = "video-js vjs-default-skin"
-            ..dataset = {},
-          html.ScriptElement()
-            ..innerHtml = VideoJsScripts().videojsCode(widget.videoJsController.playerId, getVideoJsOptions(widget.videoJsController.videoJsOptions))
-        ];
-      return htmlElement;
-    });
     return SizedBox(
       width: widget.width,
       height: widget.height,
