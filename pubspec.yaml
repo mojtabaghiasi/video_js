@@ -1,8 +1,8 @@
 name: videojs
 description: Video Library for Flutter, Easily use famuse video.js in flutter web
 version: 0.0.1
-homepage: https://github.com/PonnamKarthik/FlutterToast
-issue_tracker: https://github.com/ponnamkarthik/FlutterToast/issues
+homepage: https://github.com/mojtabaghiasi/video_js
+issue_tracker: https://github.com/mojtabaghiasi/video_js/issues
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
