@@ -19,12 +19,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: OptionsPage(),
+      home: const OptionsPage(),
     );
   }
 }
 
 class OptionsPage extends StatefulWidget {
+  const OptionsPage({Key? key}) : super(key: key);
+
   @override
   OptionsPageState createState() => OptionsPageState();
 }
@@ -39,7 +41,7 @@ class OptionsPageState extends State<OptionsPage> {
   String? language = 'en';
   bool? liveui = false;
   String? notSupportedMessage = 'this movie type not supported';
-  String? source = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
+  String? source = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
   String? sourceType = "video/mp4";
   List<double>? playbackRates = [1, 2, 3];
   bool? preferFullWindow = false;
@@ -225,7 +227,7 @@ class OptionsPageState extends State<OptionsPage> {
                                 playbackRates: playbackRates,
                                 preferFullWindow: preferFullWindow,
                                 responsive: responsive,
-                                sources: [Source("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4", "video/mp4")],
+                                sources: [Source("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4", "video/mp4")],
                                 suppressNotSupportedError: suppressNotSupportedError),
                           )),
                 );
@@ -261,7 +263,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    videoSourceController.text = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
+    videoSourceController.text = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
     videoTypeController.text = "video/mp4";
     videoJsController = VideoJsController("videoId", videoJsOptions: widget.videoJsOptions);
   }
