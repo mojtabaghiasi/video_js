@@ -49,9 +49,9 @@ Example:
 	<title>example</title>
 
 	<link rel="manifest" href="manifest.json">
-	<link id="videojscss" rel="stylesheet" href="https://unpkg.com/video.js/dist/video-js.css">
-	<script src="https://unpkg.com/video.js/dist/video.js"></script>
-	<script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js"></script>
+	<link id="videojscss" rel="stylesheet" href="https://unpkg.com/video.js/dist/video-js.css">    <!-- Add this line-->
+	<script src="https://unpkg.com/video.js/dist/video.js"></script>                               <!-- Add this line-->
+	<script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js"></script>      <!-- Add this line-->
 </head>
 ```
 

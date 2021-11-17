@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:video_js/video_js.dart';
 
 void main() {
-
   // this line need for javascript's call backs
   VideoJsResults().init();
   runApp(const MyApp());
@@ -35,13 +34,15 @@ class OptionsPageState extends State<OptionsPage> {
   bool? controls = true;
   bool? loop = false;
   bool? muted = false;
-  String? poster = 'https://file-examples-com.github.io/uploads/2017/10/file_example_JPG_100kB.jpg';
+  String? poster =
+      'https://file-examples-com.github.io/uploads/2017/10/file_example_JPG_100kB.jpg';
   String? aspectRatio = '16:9';
   bool? fluid = false;
   String? language = 'en';
   bool? liveui = false;
   String? notSupportedMessage = 'this movie type not supported';
-  String? source = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
+  String? source =
+      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
   String? sourceType = "video/mp4";
   List<double>? playbackRates = [1, 2, 3];
   bool? preferFullWindow = false;
@@ -66,7 +67,8 @@ class OptionsPageState extends State<OptionsPage> {
                 controls = val;
               });
             },
-            controlAffinity: ListTileControlAffinity.leading, //  <-- leading Checkbox
+            controlAffinity:
+                ListTileControlAffinity.leading, //  <-- leading Checkbox
           ),
           CheckboxListTile(
             title: const Text("loop"),
@@ -76,7 +78,8 @@ class OptionsPageState extends State<OptionsPage> {
                 loop = val;
               });
             },
-            controlAffinity: ListTileControlAffinity.leading, //  <-- leading Checkbox
+            controlAffinity:
+                ListTileControlAffinity.leading, //  <-- leading Checkbox
           ),
           CheckboxListTile(
             title: const Text("muted"),
@@ -86,7 +89,8 @@ class OptionsPageState extends State<OptionsPage> {
                 muted = val;
               });
             },
-            controlAffinity: ListTileControlAffinity.leading, //  <-- leading Checkbox
+            controlAffinity:
+                ListTileControlAffinity.leading, //  <-- leading Checkbox
           ),
           CheckboxListTile(
             title: const Text("fluid"),
@@ -96,7 +100,8 @@ class OptionsPageState extends State<OptionsPage> {
                 fluid = val;
               });
             },
-            controlAffinity: ListTileControlAffinity.leading, //  <-- leading Checkbox
+            controlAffinity:
+                ListTileControlAffinity.leading, //  <-- leading Checkbox
           ),
           CheckboxListTile(
             title: const Text("liveui"),
@@ -106,7 +111,8 @@ class OptionsPageState extends State<OptionsPage> {
                 liveui = val;
               });
             },
-            controlAffinity: ListTileControlAffinity.leading, //  <-- leading Checkbox
+            controlAffinity:
+                ListTileControlAffinity.leading, //  <-- leading Checkbox
           ),
           CheckboxListTile(
             title: const Text("preferFullWindow"),
@@ -116,7 +122,8 @@ class OptionsPageState extends State<OptionsPage> {
                 preferFullWindow = val;
               });
             },
-            controlAffinity: ListTileControlAffinity.leading, //  <-- leading Checkbox
+            controlAffinity:
+                ListTileControlAffinity.leading, //  <-- leading Checkbox
           ),
           CheckboxListTile(
             title: const Text("responsive"),
@@ -126,7 +133,8 @@ class OptionsPageState extends State<OptionsPage> {
                 responsive = val;
               });
             },
-            controlAffinity: ListTileControlAffinity.leading, //  <-- leading Checkbox
+            controlAffinity:
+                ListTileControlAffinity.leading, //  <-- leading Checkbox
           ),
           CheckboxListTile(
             title: const Text("suppressNotSupportedError"),
@@ -136,7 +144,8 @@ class OptionsPageState extends State<OptionsPage> {
                 suppressNotSupportedError = val;
               });
             },
-            controlAffinity: ListTileControlAffinity.leading, //  <-- leading Checkbox
+            controlAffinity:
+                ListTileControlAffinity.leading, //  <-- leading Checkbox
           ),
           ListTile(
             leading: const Text("poster"),
@@ -174,7 +183,6 @@ class OptionsPageState extends State<OptionsPage> {
               },
             ),
           ),
-
           ListTile(
             leading: const Text("source"),
             title: TextField(
@@ -200,7 +208,8 @@ class OptionsPageState extends State<OptionsPage> {
               onChanged: (val) {
                 playbackRates!.clear();
                 val.split(',').forEach((element) {
-                  if (element != '') playbackRates!.add(int.parse(element).toDouble());
+                  if (element != '')
+                    playbackRates!.add(int.parse(element).toDouble());
                 });
               },
             ),
@@ -227,8 +236,13 @@ class OptionsPageState extends State<OptionsPage> {
                                 playbackRates: playbackRates,
                                 preferFullWindow: preferFullWindow,
                                 responsive: responsive,
-                                sources: [Source("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4", "video/mp4")],
-                                suppressNotSupportedError: suppressNotSupportedError),
+                                sources: [
+                                  Source(
+                                      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+                                      "video/mp4")
+                                ],
+                                suppressNotSupportedError:
+                                    suppressNotSupportedError),
                           )),
                 );
               },
@@ -263,9 +277,11 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    videoSourceController.text = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
+    videoSourceController.text =
+        "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
     videoTypeController.text = "video/mp4";
-    videoJsController = VideoJsController("videoId", videoJsOptions: widget.videoJsOptions);
+    videoJsController =
+        VideoJsController("videoId", videoJsOptions: widget.videoJsOptions);
   }
 
   @override
@@ -331,7 +347,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   ElevatedButton(
                       onPressed: () {
                         //[type] can be video/mp4, video/webm, application/x-mpegURL (for hls videos) , ...
-                        videoJsController.setSRC(videoSourceController.text.toString(), type: videoTypeController.text.toString());
+                        videoJsController.setSRC(
+                            videoSourceController.text.toString(),
+                            type: videoTypeController.text.toString());
                       },
                       child: const Text(
                         "set source",
@@ -412,12 +430,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   ElevatedButton(
                       onPressed: () {
-                        videoJsController.getVolume((val) => ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            duration: const Duration(milliseconds: 500),
-                            content: Text(
-                              "volume is : $val",
-                              style: const TextStyle(color: Colors.white),
-                            ))));
+                        videoJsController.getVolume((val) =>
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                duration: const Duration(milliseconds: 500),
+                                content: Text(
+                                  "volume is : $val",
+                                  style: const TextStyle(color: Colors.white),
+                                ))));
                       },
                       child: const Text(
                         "Get volume",
@@ -620,7 +639,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   ElevatedButton(
                       onPressed: () {
-                        videoJsController.setPoster("https://file-examples-com.github.io/uploads/2017/10/file_example_JPG_100kB.jpg");
+                        videoJsController.setPoster(
+                            "https://file-examples-com.github.io/uploads/2017/10/file_example_JPG_100kB.jpg");
                       },
                       child: const Text(
                         "Set video poster",

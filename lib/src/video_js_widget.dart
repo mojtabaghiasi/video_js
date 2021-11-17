@@ -13,7 +13,12 @@ class VideoJsWidget extends StatefulWidget {
   final double height;
   final double width;
 
-  const VideoJsWidget({Key? key, required this.height, required this.width, required this.videoJsController}) : super(key: key);
+  const VideoJsWidget(
+      {Key? key,
+      required this.height,
+      required this.width,
+      required this.videoJsController})
+      : super(key: key);
 
   @override
   VideoJsWidgetState createState() => VideoJsWidgetState();
@@ -51,7 +56,10 @@ class VideoJsWidgetState extends State<VideoJsWidget> {
               ..style.width = "100%"
               ..style.height = "auto"
               ..className = "video-js vjs-default-skin",
-            html.ScriptElement()..innerHtml = VideoJsScripts().videojsCode(widget.videoJsController.playerId, getVideoJsOptions(widget.videoJsController.videoJsOptions))
+            html.ScriptElement()
+              ..innerHtml = VideoJsScripts().videojsCode(
+                  widget.videoJsController.playerId,
+                  getVideoJsOptions(widget.videoJsController.videoJsOptions))
           ];
         return htmlElement;
       });
@@ -66,8 +74,10 @@ class VideoJsWidgetState extends State<VideoJsWidget> {
   /// To generate random string for HtmlElementView ID
   String generateRandomString(int len) {
     var r = Random();
-    const _chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
-    return List.generate(len, (index) => _chars[r.nextInt(_chars.length)]).join();
+    const _chars =
+        'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+    return List.generate(len, (index) => _chars[r.nextInt(_chars.length)])
+        .join();
   }
 
   @override

@@ -14,7 +14,8 @@ class VideoJsController {
   videoJs(Function(String) onReady, {VideoJsOptions? videoJsOptions}) {
     final html.Element scriptElement = html.ScriptElement()
       ..id = "videojs"
-      ..innerHtml = VideoJsScripts().videojsCode(playerId, videoJsOptions!.toJson());
+      ..innerHtml =
+          VideoJsScripts().videojsCode(playerId, videoJsOptions!.toJson());
     html.Element? ele = html.querySelector("#videojs");
     if (html.querySelector("#videojs") != null) {
       ele!.remove();
@@ -109,7 +110,8 @@ class VideoJsController {
       ele!.remove();
     }
     html.querySelector('body')!.children.add(scriptElement);
-    VideoJsResults().listenToValueFromJs(playerId, 'isFull', onFullScreenStatus);
+    VideoJsResults()
+        .listenToValueFromJs(playerId, 'isFull', onFullScreenStatus);
   }
 
   /// To change player to full screen mode
@@ -208,7 +210,8 @@ class VideoJsController {
       ele!.remove();
     }
     html.querySelector('body')!.children.add(scriptElement);
-    VideoJsResults().listenToValueFromJs(playerId, 'getDuration', onDurationTime);
+    VideoJsResults()
+        .listenToValueFromJs(playerId, 'getDuration', onDurationTime);
   }
 
   /// Video remain time in seconds
@@ -221,7 +224,8 @@ class VideoJsController {
       ele!.remove();
     }
     html.querySelector('body')!.children.add(scriptElement);
-    VideoJsResults().listenToValueFromJs(playerId, 'getRemaining', onRemainTime);
+    VideoJsResults()
+        .listenToValueFromJs(playerId, 'getRemaining', onRemainTime);
   }
 
   /// Video buffered ( downloaded ) percent
@@ -234,7 +238,8 @@ class VideoJsController {
       ele!.remove();
     }
     html.querySelector('body')!.children.add(scriptElement);
-    VideoJsResults().listenToValueFromJs(playerId, 'getBuffered', onBufferPercent);
+    VideoJsResults()
+        .listenToValueFromJs(playerId, 'getBuffered', onBufferPercent);
   }
 
   /// Set Video poster/thumbnail
