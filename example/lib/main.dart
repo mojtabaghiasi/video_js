@@ -340,7 +340,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
                       onPressed: () {
@@ -350,6 +350,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         "play",
                         style: TextStyle(color: Colors.white),
                       )),
+                  const SizedBox(
+                    width: 5,
+                  ),
                   ElevatedButton(
                       onPressed: () {
                         videoJsController.pause();
@@ -358,6 +361,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         "pause",
                         style: TextStyle(color: Colors.white),
                       )),
+                  const SizedBox(
+                    width: 5,
+                  ),
                   ElevatedButton(
                       onPressed: () {
                         videoJsController.isPaused((val) {
@@ -373,6 +379,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         "is pause",
                         style: TextStyle(color: Colors.white),
                       )),
+                  const SizedBox(
+                    width: 5,
+                  ),
                   ElevatedButton(
                       onPressed: () {
                         videoJsController.currentTime((val) {
@@ -395,7 +404,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
                       onPressed: () {
@@ -410,6 +419,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         "Get volume",
                         style: TextStyle(color: Colors.white),
                       )),
+                  const SizedBox(
+                    width: 5,
+                  ),
                   ElevatedButton(
                       onPressed: () {
                         videoJsController.setVolume("0.5");
@@ -418,6 +430,15 @@ class _MyHomePageState extends State<MyHomePage> {
                         "Set volume to 0.5",
                         style: TextStyle(color: Colors.white),
                       )),
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
                   ElevatedButton(
                       onPressed: () {
                         videoJsController.toggleMute();
@@ -426,13 +447,16 @@ class _MyHomePageState extends State<MyHomePage> {
                         "Toggle mute",
                         style: TextStyle(color: Colors.white),
                       )),
+                  const SizedBox(
+                    width: 5,
+                  ),
                   ElevatedButton(
                       onPressed: () {
                         videoJsController.isMute((val) {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               duration: const Duration(milliseconds: 500),
                               content: Text(
-                                "volume status : $val",
+                                "Mute status : $val",
                                 style: const TextStyle(color: Colors.white),
                               )));
                         });
@@ -448,7 +472,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
                       onPressed: () {
@@ -458,6 +482,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         "Toggle Full Screen",
                         style: TextStyle(color: Colors.white),
                       )),
+                  const SizedBox(
+                    width: 5,
+                  ),
                   ElevatedButton(
                       onPressed: () {
                         videoJsController.isFullScreen((val) {
@@ -473,6 +500,15 @@ class _MyHomePageState extends State<MyHomePage> {
                         "Full screen status",
                         style: TextStyle(color: Colors.white),
                       )),
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
                   ElevatedButton(
                       onPressed: () {
                         videoJsController.requestFullScreen();
@@ -481,6 +517,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         "request full screen",
                         style: TextStyle(color: Colors.white),
                       )),
+                  const SizedBox(
+                    width: 5,
+                  ),
                   ElevatedButton(
                       onPressed: () {
                         videoJsController.exitFullScreen();
@@ -496,7 +535,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
                       onPressed: () {
@@ -506,6 +545,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         "Set video time to 100 sec",
                         style: TextStyle(color: Colors.white),
                       )),
+                  const SizedBox(
+                    width: 5,
+                  ),
                   ElevatedButton(
                       onPressed: () {
                         videoJsController.durationTime((val) {
@@ -521,6 +563,15 @@ class _MyHomePageState extends State<MyHomePage> {
                         "Duration",
                         style: TextStyle(color: Colors.white),
                       )),
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
                   ElevatedButton(
                       onPressed: () {
                         videoJsController.remainTime((val) {
@@ -536,6 +587,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         "Remain time",
                         style: TextStyle(color: Colors.white),
                       )),
+                  const SizedBox(
+                    width: 5,
+                  ),
                   ElevatedButton(
                       onPressed: () {
                         videoJsController.bufferPercent((val) {
@@ -558,7 +612,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
                       onPressed: () {
@@ -568,6 +622,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         "Set video poster",
                         style: TextStyle(color: Colors.white),
                       )),
+                  const SizedBox(
+                    width: 5,
+                  ),
                   ElevatedButton(
                       onPressed: () {
                         videoJsController.getPoster((val) {
@@ -583,6 +640,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         "Get video poster",
                         style: TextStyle(color: Colors.white),
                       )),
+                  const SizedBox(
+                    width: 5,
+                  ),
                   ElevatedButton(
                       onPressed: () {
                         videoJsController.tech(true);
