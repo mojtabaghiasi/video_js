@@ -1,25 +1,8 @@
-
 class VideoJsScripts {
-
-  // [autoplay]
-  // a boolean value of false: the same as having no attribute on the video element, won't autoplay
-  // a boolean value of true: the same as having attribute on the video element, will use browsers autoplay
-  // a string value of 'muted': will mute the video element and then manually call play() on loadstart. This is likely to work.
-  // a string value of 'play': will call play() on loadstart, similar to browsers autoplay
-  // a string value of 'any': will call play() on loadstart and if the promise is rejected it will mute the video element then call play().
-
-  // [controls]
-  //Determines whether or not the player has controls that the user can interact with. Without controls the only way to start the video
-  //playing is with the autoplay attribute or through the Player API.
-
-  // [height]
-  // Sets the display height of the video player in pixels.
   String videojsCode(String playerId, Map<String, dynamic>? options) => """
     var player = videojs('$playerId', ${options},function() {
     callBackToDartSide('$playerId', 'onReady' , 'true');
     });""";
-
-
 
   String globalAutoSetup(bool status) => """
     videojs.options.autoSetup = '$status';""";
@@ -29,7 +12,6 @@ class VideoJsScripts {
 
   String globalControlsStatus(bool status) => """
     videojs.options.controls = '$status';""";
-
 
   String globalPreload(String val) => """
     videojs.options.preload = '$val';""";
@@ -95,7 +77,6 @@ class VideoJsScripts {
     var status = player.muted();
     callBackToDartSide('$playerId', 'isMute' , status);
     });""";
-
 
   // set, tell the player it's in fullscreen
   String toggleFullScreenMode(String playerId) => """
@@ -194,5 +175,4 @@ class VideoJsScripts {
     player.ready(function() {
     player.tech('$tech');
     });""";
-
 }

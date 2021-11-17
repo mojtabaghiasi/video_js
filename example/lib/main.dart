@@ -34,14 +34,14 @@ class OptionsPageState extends State<OptionsPage> {
   String? poster = 'https://file-examples-com.github.io/uploads/2017/10/file_example_JPG_100kB.jpg';
   String? aspectRatio = '16:9';
   bool? fluid = false;
-  String? language = 'fa';
+  String? language = 'en';
   bool? liveui = false;
   String? notSupportedMessage = 'this movie type not supported';
   String? source = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
   String? sourceType = "video/mp4";
   List<double>? playbackRates = [1, 2, 3];
   bool? preferFullWindow = false;
-  bool? responsive = true;
+  bool? responsive = false;
 
   // List<Source>? sources = [];
   bool? suppressNotSupportedError = false;
@@ -290,8 +290,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   VideoJsWidget(
                     videoJsController: videoJsController,
-                    height: MediaQuery.of(context).size.height / 2,
-                    width: MediaQuery.of(context).size.width / 2,
+                    height: MediaQuery.of(context).size.width / 2.5,
+                    width: MediaQuery.of(context).size.width / 1.5,
                   )
                 ],
               ),
