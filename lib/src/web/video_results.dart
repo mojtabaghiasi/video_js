@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:js';
-import 'package:videojs/src/models/resulte_from_videoJs.dart';
+import 'package:video_js/src/models/resulte_from_videoJs.dart';
 
 class VideoJsResults {
   StreamController<ResultFromVideoJs> _onVolumeFromJsStream = StreamController<ResultFromVideoJs>.broadcast();

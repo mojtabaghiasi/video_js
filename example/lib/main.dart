@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:videojs/videojs.dart';
+import 'package:video_js/video_js.dart';
 
 void main() {
 

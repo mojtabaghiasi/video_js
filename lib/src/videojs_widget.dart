@@ -1,11 +1,12 @@
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'dart:math';
 import 'package:flutter/cupertino.dart';
-import 'package:videojs/src/web/videojs_controller.dart';
-import 'package:videojs/src/web/videojs_scripts.dart';
+import 'package:video_js/src/web/videojs_controller.dart';
+import 'package:video_js/src/web/videojs_scripts.dart';
 import 'dart:html' as html;
 import 'dart:ui' as ui;
-import 'package:videojs/videojs.dart';
+
+import 'package:video_js/video_js.dart';
 
 class VideoJsWidget extends StatefulWidget {
   final VideoJsController videoJsController;
