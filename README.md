@@ -2,7 +2,7 @@
 
 Flutter plugin for use [Video.js](https://github.com/videojs/video.js) in flutter web
 
-![The example app running in Web](https://github.com/mojtabaghiasi/video_js/blob/master/doc/demo.png?raw=true)
+<img src="https://github.com/mojtabaghiasi/video_js/blob/master/doc/demo_image.png?raw=true" width="500">
 
 
 ## Installation
