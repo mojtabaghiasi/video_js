@@ -11,7 +11,7 @@ Add it to your package's pubspec.yaml file
 
 ```yml
 dependencies:
-  video_js: ^0.1.0
+  video_js: ^0.1.1
 ```
 
 ### Web
