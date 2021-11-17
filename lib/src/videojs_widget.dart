@@ -38,6 +38,8 @@ class VideoJsWidgetState extends State<VideoJsWidget> {
     ui.platformViewRegistry.registerViewFactory(elementId, (int id) {
       final html.Element htmlElement = html.DivElement()
         ..id = "divId"
+        ..style.width = '100%'
+        ..style.height = '100%'
         ..children = [
           html.VideoElement()
             ..id = widget.videoJsController.playerId

@@ -19,7 +19,3 @@ flutter:
   plugin:
     platforms:
       web:
-        pluginClass: VideoJsWebPlugin
-        fileName: videojs_web.dart
-  assets:
-    - assets/
