@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:videojs/videojs.dart';
 
 void main() {
-  VideoObservers().init();
+
+  // this line need for javascript's call backs
+  VideoJsResults().init();
   runApp(const MyApp());
 }
 
@@ -638,17 +640,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                       child: const Text(
                         "Get video poster",
-                        style: TextStyle(color: Colors.white),
-                      )),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  ElevatedButton(
-                      onPressed: () {
-                        videoJsController.tech(true);
-                      },
-                      child: const Text(
-                        "Tech",
                         style: TextStyle(color: Colors.white),
                       )),
                 ],

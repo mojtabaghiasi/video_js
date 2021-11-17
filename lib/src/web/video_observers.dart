@@ -2,38 +2,41 @@ import 'dart:async';
 import 'dart:js';
 import 'package:videojs/src/models/resulte_from_videoJs.dart';
 
+class VideoJsResults {
+  StreamController<ResultFromVideoJs> _onVolumeFromJsStream = StreamController<ResultFromVideoJs>.broadcast();
 
-class VideoObservers{
+  StreamController<ResultFromVideoJs> get onVolumeFromJsStream => _onVolumeFromJsStream;
 
-  StreamController<ResulteFromVideoJs> _onVolumeFromJsStream = StreamController<ResulteFromVideoJs>.broadcast();
-  StreamController<ResulteFromVideoJs> get onVolumeFromJsStream => _onVolumeFromJsStream;
+  VideoJsResults._privateConstructor();
 
+  static final VideoJsResults _instance = VideoJsResults._privateConstructor();
 
-  VideoObservers._privateConstructor();
-  static final VideoObservers _instance = VideoObservers._privateConstructor();
-  factory VideoObservers() {
+  factory VideoJsResults() {
     return _instance;
   }
-  
-  init(){
-    context['callBackToDartSide'] = (playerId , type, value){
-      _onVolumeFromJsStream.sink.add(ResulteFromVideoJs(playerId.toString() , type.toString() , value.toString()));
+
+  /// this function need to call on app's main method to register call back's from javascript side
+  init() {
+    context['callBackToDartSide'] = (playerId, type, value) {
+      _onVolumeFromJsStream.sink.add(ResultFromVideoJs(playerId.toString(), type.toString(), value.toString()));
     };
   }
 
+  /// this function listening to every call back from javascript type
+  /// type can be onReady, onEnd, getVolume, isMute, isFull, isPaused, getCurrent, getDuration,
+  /// getRemaining, getBuffered, getPoster, onReady
   listenToValueFromJs(String playerId, String type, Function(String) onJsValue) {
     StreamSubscription? subscription;
-    subscription = VideoObservers().onVolumeFromJsStream.stream.listen((ResulteFromVideoJs resulteFromVideoJs) {
+    subscription = VideoJsResults().onVolumeFromJsStream.stream.listen((ResultFromVideoJs resulteFromVideoJs) {
       if (playerId == resulteFromVideoJs.videoId && type == resulteFromVideoJs.type) {
-        onJsValue(resulteFromVideoJs.resulte);
+        onJsValue(resulteFromVideoJs.result);
         subscription!.cancel();
       }
     });
   }
 
-  close(){
+  /// close StreamController
+  close() {
     _onVolumeFromJsStream.close();
   }
-
 }
-

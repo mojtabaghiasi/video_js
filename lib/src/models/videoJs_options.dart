@@ -78,19 +78,19 @@ class VideoJsOptions {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    if(this.controls != null) data['controls'] = this.controls;
-    if(this.loop != null) data['loop'] = this.loop;
-    if(this.muted != null) data['muted'] = this.muted;
-    if(this.poster != null) data['poster'] = "\"${this.poster}\"";
-    if(this.aspectRatio != null) data['aspectRatio'] = "\"${this.aspectRatio}\"";
-    if(this.language != null) data['language'] = "\"${this.language}\"";
-    if(this.liveui != null) data['liveui'] = this.liveui;
-    if(this.notSupportedMessage != null) data['notSupportedMessage'] = "\"${this.notSupportedMessage}\"";
-    if(this.playbackRates != null) data['playbackRates'] = this.playbackRates;
-    if(this.preferFullWindow != null) data['preferFullWindow'] = this.preferFullWindow;
-    if(this.responsive != null) data['responsive'] = this.responsive;
-    if(this.suppressNotSupportedError != null) data['suppressNotSupportedError'] = this.suppressNotSupportedError;
-    if(this.sources != null) data['sources'] = this.sources!.map((v) => v.toJson()).toList();
+    if (this.controls != null) data['controls'] = this.controls;
+    if (this.loop != null) data['loop'] = this.loop;
+    if (this.muted != null) data['muted'] = this.muted;
+    if (this.poster != null) data['poster'] = "\"${this.poster}\"";
+    if (this.aspectRatio != null) data['aspectRatio'] = "\"${this.aspectRatio}\"";
+    if (this.language != null) data['language'] = "\"${this.language}\"";
+    if (this.liveui != null) data['liveui'] = this.liveui;
+    if (this.notSupportedMessage != null) data['notSupportedMessage'] = "\"${this.notSupportedMessage}\"";
+    if (this.playbackRates != null) data['playbackRates'] = this.playbackRates;
+    if (this.preferFullWindow != null) data['preferFullWindow'] = this.preferFullWindow;
+    if (this.responsive != null) data['responsive'] = this.responsive;
+    if (this.suppressNotSupportedError != null) data['suppressNotSupportedError'] = this.suppressNotSupportedError;
+    if (this.sources != null) data['sources'] = this.sources!.map((v) => v.toJson()).toList();
     return data;
   }
 }

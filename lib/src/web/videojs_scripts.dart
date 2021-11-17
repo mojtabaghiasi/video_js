@@ -168,11 +168,4 @@ class VideoJsScripts {
     var value = player.poster();
     callBackToDartSide('$playerId', 'getPoster', value);
     });""";
-
-  //The tech on the player can be accessed via tech(). Passing any argument will silence the warning that is logged.
-  String tech(String playerId, bool tech) => """
-    var player = videojs.getPlayer('$playerId');
-    player.ready(function() {
-    player.tech('$tech');
-    });""";
 }

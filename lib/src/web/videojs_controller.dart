@@ -20,7 +20,7 @@ class VideoJsController {
       ele!.remove();
     }
     html.querySelector('body')!.children.add(scriptElement);
-    VideoObservers().listenToValueFromJs(playerId, 'onReady', onReady);
+    VideoJsResults().listenToValueFromJs(playerId, 'onReady', onReady);
   }
 
   /// to set video source by type
@@ -46,7 +46,7 @@ class VideoJsController {
       ele!.remove();
     }
     html.querySelector('body')!.children.add(scriptElement);
-    VideoObservers().listenToValueFromJs(playerId, 'getVolume', onVolumeRecive);
+    VideoJsResults().listenToValueFromJs(playerId, 'getVolume', onVolumeRecive);
   }
 
   /// set volume to video player
@@ -83,7 +83,7 @@ class VideoJsController {
       ele!.remove();
     }
     html.querySelector('body')!.children.add(scriptElement);
-    VideoObservers().listenToValueFromJs(playerId, 'isMute', onMuteStatus);
+    VideoJsResults().listenToValueFromJs(playerId, 'isMute', onMuteStatus);
   }
 
   /// toggle full screen in video player. this function is different with requestFullScreen,
@@ -109,7 +109,7 @@ class VideoJsController {
       ele!.remove();
     }
     html.querySelector('body')!.children.add(scriptElement);
-    VideoObservers().listenToValueFromJs(playerId, 'isFull', onFullScreenStatus);
+    VideoJsResults().listenToValueFromJs(playerId, 'isFull', onFullScreenStatus);
   }
 
   /// To change player to full screen mode
@@ -170,7 +170,7 @@ class VideoJsController {
       ele!.remove();
     }
     html.querySelector('body')!.children.add(scriptElement);
-    VideoObservers().listenToValueFromJs(playerId, 'isPaused', onPauseStatus);
+    VideoJsResults().listenToValueFromJs(playerId, 'isPaused', onPauseStatus);
   }
 
   /// To get video's current playing time in seconds
@@ -183,7 +183,7 @@ class VideoJsController {
       ele!.remove();
     }
     html.querySelector('body')!.children.add(scriptElement);
-    VideoObservers().listenToValueFromJs(playerId, 'getCurrent', onCurrentTime);
+    VideoJsResults().listenToValueFromJs(playerId, 'getCurrent', onCurrentTime);
   }
 
   /// Set video
@@ -198,6 +198,7 @@ class VideoJsController {
     html.querySelector('body')!.children.add(scriptElement);
   }
 
+  /// Video whole time in seconds
   durationTime(Function(String) onDurationTime) {
     final html.Element scriptElement = html.ScriptElement()
       ..id = "durationTime"
@@ -207,9 +208,10 @@ class VideoJsController {
       ele!.remove();
     }
     html.querySelector('body')!.children.add(scriptElement);
-    VideoObservers().listenToValueFromJs(playerId, 'getDuration', onDurationTime);
+    VideoJsResults().listenToValueFromJs(playerId, 'getDuration', onDurationTime);
   }
 
+  /// Video remain time in seconds
   remainTime(Function(String) onRemainTime) {
     final html.Element scriptElement = html.ScriptElement()
       ..id = "onRemainTime"
@@ -219,9 +221,10 @@ class VideoJsController {
       ele!.remove();
     }
     html.querySelector('body')!.children.add(scriptElement);
-    VideoObservers().listenToValueFromJs(playerId, 'getRemaining', onRemainTime);
+    VideoJsResults().listenToValueFromJs(playerId, 'getRemaining', onRemainTime);
   }
 
+  /// Video buffered ( downloaded ) percent
   bufferPercent(Function(String) onBufferPercent) {
     final html.Element scriptElement = html.ScriptElement()
       ..id = "bufferPercent"
@@ -231,9 +234,10 @@ class VideoJsController {
       ele!.remove();
     }
     html.querySelector('body')!.children.add(scriptElement);
-    VideoObservers().listenToValueFromJs(playerId, 'getBuffered', onBufferPercent);
+    VideoJsResults().listenToValueFromJs(playerId, 'getBuffered', onBufferPercent);
   }
 
+  /// Set Video poster/thumbnail
   setPoster(String poster) {
     final html.Element scriptElement = html.ScriptElement()
       ..id = "setPoster"
@@ -245,6 +249,7 @@ class VideoJsController {
     html.querySelector('body')!.children.add(scriptElement);
   }
 
+  /// Get Video poster/thumbnail
   getPoster(Function(String) onPosterGet) {
     final html.Element scriptElement = html.ScriptElement()
       ..id = "getPoster"
@@ -254,20 +259,24 @@ class VideoJsController {
       ele!.remove();
     }
     html.querySelector('body')!.children.add(scriptElement);
-    VideoObservers().listenToValueFromJs(playerId, 'getPoster', onPosterGet);
+    VideoJsResults().listenToValueFromJs(playerId, 'getPoster', onPosterGet);
   }
 
-  tech(bool tech) {
+  /// Get Video poster/thumbnail
+  onPlayerReady(Function(String) onReady) {
     final html.Element scriptElement = html.ScriptElement()
-      ..id = "tech"
-      ..innerHtml = VideoJsScripts().tech(playerId, tech);
-    html.Element? ele = html.querySelector("#tech");
-    if (html.querySelector("#tech") != null) {
+      ..id = "onPlayerReady"
+      ..innerHtml = VideoJsScripts().getPoster(playerId);
+    html.Element? ele = html.querySelector("#onPlayerReady");
+    if (html.querySelector("#onPlayerReady") != null) {
       ele!.remove();
     }
     html.querySelector('body')!.children.add(scriptElement);
+    VideoJsResults().listenToValueFromJs(playerId, 'onReady', onReady);
   }
 
+  /// This method is available on all Video.js players and components.
+  /// It is the only supported method of removing a Video.js player from both the DOM and memory.
   dispose() {
     final html.Element scriptElement = html.ScriptElement()
       ..id = "dispose"
