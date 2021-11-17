@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:videojs/src/web/videojs_controller.dart';
@@ -33,25 +34,27 @@ class VideoJsWidgetState extends State<VideoJsWidget> {
   @override
   void initState() {
     super.initState();
-    elementId = generateRandomString(7);
-    // ignore: undefined_prefixed_name
-    ui.platformViewRegistry.registerViewFactory(elementId, (int id) {
-      final html.Element htmlElement = html.DivElement()
-        ..id = "divId"
-        ..style.width = '100%'
-        ..style.height = '100%'
-        ..children = [
-          html.VideoElement()
-            ..id = widget.videoJsController.playerId
-            ..style.minHeight = "100%"
-            ..style.minHeight = "100%"
-            ..style.width = "100%"
-            ..style.height = "auto"
-            ..className = "video-js vjs-default-skin",
-          html.ScriptElement()..innerHtml = VideoJsScripts().videojsCode(widget.videoJsController.playerId, getVideoJsOptions(widget.videoJsController.videoJsOptions))
-        ];
-      return htmlElement;
-    });
+    if (kIsWeb) {
+      elementId = generateRandomString(7);
+      // ignore: undefined_prefixed_name
+      ui.platformViewRegistry.registerViewFactory(elementId, (int id) {
+        final html.Element htmlElement = html.DivElement()
+          ..id = "divId"
+          ..style.width = '100%'
+          ..style.height = '100%'
+          ..children = [
+            html.VideoElement()
+              ..id = widget.videoJsController.playerId
+              ..style.minHeight = "100%"
+              ..style.minHeight = "100%"
+              ..style.width = "100%"
+              ..style.height = "auto"
+              ..className = "video-js vjs-default-skin",
+            html.ScriptElement()..innerHtml = VideoJsScripts().videojsCode(widget.videoJsController.playerId, getVideoJsOptions(widget.videoJsController.videoJsOptions))
+          ];
+        return htmlElement;
+      });
+    }
   }
 
   /// Get video initial options as a json
@@ -71,9 +74,13 @@ class VideoJsWidgetState extends State<VideoJsWidget> {
     return SizedBox(
       width: widget.width,
       height: widget.height,
-      child: HtmlElementView(
-        viewType: elementId,
-      ),
+      child: kIsWeb
+          ? HtmlElementView(
+              viewType: elementId,
+            )
+          : Center(
+              child: Text("Video_js plugin just supported on web"),
+            ),
     );
   }
 }
