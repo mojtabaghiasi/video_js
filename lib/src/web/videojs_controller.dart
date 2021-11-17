@@ -1,7 +1,7 @@
 import 'dart:html' as html;
 
 import 'package:videojs/src/models/videoJs_options.dart';
-import 'package:videojs/src/web/video_observers.dart';
+import 'package:videojs/src/web/video_results.dart';
 import 'package:videojs/src/web/videojs_scripts.dart';
 
 class VideoJsController {
