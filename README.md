@@ -1,16 +1,121 @@
-# video_js
+# Flutter Video.js player
 
-A new Flutter project.
+Flutter plugin for use [Video.js](https://github.com/videojs/video.js) in flutter web
 
-## Getting Started
+## Installation
 
-This project is a starting point for a Flutter application.
+Add it to your package's pubspec.yaml file
 
-A few resources to get you started if this is your first Flutter project:
+```yml
+dependencies:
+  video_js: ^0.0.1
+```
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+### Web
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+To implement you need to include Video.js library in the index.html of web section
+
+```javascript
+  <link id="videojscss" rel="stylesheet" href="https://unpkg.com/video.js/dist/video-js.css">
+    <script src="https://unpkg.com/video.js/dist/video.js"></script>
+```
+
+To support HLS formats you need to add this script too
+
+```javascript
+  <script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js"></script>
+```
+
+Example:
+
+```html
+
+<head>
+	<base href="$FLUTTER_BASE_HREF">
+
+	<meta charset="UTF-8">
+	<meta content="IE=Edge" http-equiv="X-UA-Compatible">
+	<meta name="description" content="A new Flutter project.">
+
+	<!-- iOS meta tags & icons -->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-title" content="example">
+	<link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+	<title>example</title>
+
+	<link rel="manifest" href="manifest.json">
+	<link id="videojscss" rel="stylesheet" href="https://unpkg.com/video.js/dist/video-js.css">
+	<script src="https://unpkg.com/video.js/dist/video.js"></script>
+	<script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js"></script>
+</head>
+```
+
+*Note*
+See usage example in video_js plugin
+
+## Example
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:videojs/videojs.dart';
+
+void main() => runApp(VideoApp());
+
+class VideoApp extends StatefulWidget {
+  @override
+  _VideoAppState createState() => _VideoAppState();
+}
+
+class _VideoAppState extends State<VideoApp> {
+  late VideoJsController _videoJsController;
+
+  @override
+  void initState() {
+    super.initState();
+    _videoJsController = VideoJsController("videoId", videoJsOptions: VideoJsOptions(
+        controls: true,
+        loop: false,
+        muted: false,
+        poster: 'https://file-examples-com.github.io/uploads/2017/10/file_example_JPG_100kB.jpg',
+        aspectRatio: '16:9',
+        fluid: false,
+        language: 'en',
+        liveui: false,
+        notSupportedMessage: 'this movie type not supported',
+        playbackRates: [1, 2, 3],
+        preferFullWindow: false,
+        responsive: false,
+        sources: [Source("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4", "video/mp4")],
+        suppressNotSupportedError: false));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Video JS Demo',
+      home: Scaffold(
+        body: Center(
+            child: VideoJsWidget(
+              videoJsController: _videoJsController,
+              height: MediaQuery.of(context).size.width / 2.5,
+              width: MediaQuery.of(context).size.width / 1.5,
+            )
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            _videoJsController.isPaused((isPlaying) {
+              isPlaying 
+                  ? videoJsController.pause() 
+                  : videoJsController.play();
+            });
+          },
+          child: Icon(Icons.play_arrow,),
+        ),
+      ),
+    );
+  }
+}
+```
+
