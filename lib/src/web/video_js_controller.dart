@@ -2,7 +2,7 @@ import 'dart:html' as html;
 
 import 'package:video_js/src/models/videoJs_options.dart';
 import 'package:video_js/src/web/video_results.dart';
-import 'package:video_js/src/web/videojs_scripts.dart';
+import 'package:video_js/src/web/video_js_scripts.dart';
 
 class VideoJsController {
   final String playerId;

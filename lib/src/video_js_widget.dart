@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'dart:math';
 import 'package:flutter/cupertino.dart';
-import 'package:video_js/src/web/videojs_controller.dart';
-import 'package:video_js/src/web/videojs_scripts.dart';
+import 'package:video_js/src/web/video_js_controller.dart';
+import 'package:video_js/src/web/video_js_scripts.dart';
 import 'dart:html' as html;
 import 'dart:ui' as ui;
 
