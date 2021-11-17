@@ -122,3 +122,8 @@ class _VideoAppState extends State<VideoApp> {
 }
 ```
 
+
+*Note*: This plugin is still under development, and some APIs might not be available yet.
+[Feedback welcome](https://github.com/mojtabaghiasi/video_js/issues) and
+[Pull Requests](https://github.com/mojtabaghiasi/video_js/pulls) are most welcome!
+
