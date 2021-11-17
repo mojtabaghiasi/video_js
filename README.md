@@ -2,6 +2,9 @@
 
 Flutter plugin for use [Video.js](https://github.com/videojs/video.js) in flutter web
 
+![The example app running in Web](https://github.com/mojtabaghiasi/video_js/blob/master/doc/demo.png?raw=true)
+
+
 ## Installation
 
 Add it to your package's pubspec.yaml file
