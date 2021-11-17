@@ -11,7 +11,7 @@ Add it to your package's pubspec.yaml file
 
 ```yml
 dependencies:
-  video_js: ^0.0.1
+  video_js: ^0.1.0
 ```
 
 ### Web
@@ -56,7 +56,7 @@ Example:
 ```
 
 *Note*
-See usage example in video_js plugin
+See usage [example](https://github.com/mojtabaghiasi/video_js/tree/master/example) in video_js plugin
 
 ## Example
 
