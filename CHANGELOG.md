@@ -1,4 +1,5 @@
-
+## 0.1.2
+* Update readme.md
 ## 0.1.1
 * formatted according to dartfmt.
 
