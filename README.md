@@ -11,7 +11,7 @@ Add it to your package's pubspec.yaml file
 
 ```yml
 dependencies:
-  video_js: ^0.1.1
+  video_js: ^0.1.2
 ```
 
 ### Web
@@ -58,13 +58,25 @@ Example:
 *Note*
 See usage [example](https://github.com/mojtabaghiasi/video_js/tree/master/example) in video_js plugin
 
+Then do this in main method :
+
+```dart
+void main() {
+  // this line need for javascript's call backs
+  VideoJsResults().init();
+  runApp(MyApp());
+}
+```
 ## Example
 
 ```dart
 import 'package:flutter/material.dart';
 import 'package:videojs/videojs.dart';
 
-void main() => runApp(VideoApp());
+void main(){
+  VideoJsResults().init();
+  runApp(VideoApp());
+}
 
 class VideoApp extends StatefulWidget {
   @override
