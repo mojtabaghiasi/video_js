@@ -121,12 +121,12 @@ class _VideoAppState extends State<VideoApp> {
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             _videoJsController.isPaused((isPlaying) {
-              isPlaying 
-                  ? videoJsController.pause() 
-                  : videoJsController.play();
+              isPlaying != 'true'
+                  ? _videoJsController.pause()
+                  : _videoJsController.play();
             });
           },
-          child: Icon(Icons.play_arrow,),
+         child: const Icon(Icons.play_arrow,),
         ),
       ),
     );

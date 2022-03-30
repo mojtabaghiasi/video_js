@@ -1,6 +1,6 @@
 name: video_js
 description: Video Library for Flutter, Easily use famuse video.js in flutter web
-version: 0.1.2
+version: 0.1.3
 homepage: https://github.com/mojtabaghiasi/video_js
 issue_tracker: https://github.com/mojtabaghiasi/video_js/issues
 
