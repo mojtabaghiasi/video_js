@@ -1,10 +1,9 @@
 import 'dart:math';
-import 'dart:ui' as ui;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
 import 'package:universal_html/html.dart' as html;
-import 'package:video_js_themed/src/web/video_js_scripts.dart';
+import 'package:video_js_themed/src/view_factory_plugin.dart';
 import 'package:video_js_themed/video_js.dart';
 
 class VideoJsWidget extends StatefulWidget {
@@ -48,31 +47,17 @@ class VideoJsWidgetState extends State<VideoJsWidget> {
     super.initState();
     if (kIsWeb) {
       elementId = generateRandomString(7);
-      // ignore: undefined_prefixed_name
-      ui.platformViewRegistry.registerViewFactory(elementId, (int id) {
-        final html.Element htmlElement = html.DivElement()
-          ..id = 'div$elementId'
-          ..style.width = '100%'
-          ..style.height = '100%'
-          ..children = [
-            html.VideoElement()
-              ..id = widget.videoJsController.playerId
-              // ..style.minHeight = '100%'
-              // ..style.minHeight = '100%'
-              // ..style.width = '100%'
-              // ..style.height = 'auto'
-              ..className = 'video-js ${widget.theme}'
-              ..width = widget.width.toInt()
-              ..height = widget.height.toInt(),
-            html.ScriptElement()
-              ..innerHtml = VideoJsScripts().videojsCode(
-                widget.videoJsController.playerId,
-                getVideoJsOptions(widget.videoJsController.videoJsOptions),
-                qualitySelector: widget.videoJsController.qualitySelector,
-              )
-          ];
-        return htmlElement;
-      });
+      // ignore: undefined_prefixed_name1
+      ViewFactoryPlugin.platform.registerViewFactory(
+        elementId: elementId,
+        playerId: widget.videoJsController.playerId,
+        theme: widget.theme,
+        width: widget.width,
+        height: widget.height,
+        qualitySelector: widget.videoJsController.qualitySelector,
+        videoJsOptions:
+            getVideoJsOptions(widget.videoJsController.videoJsOptions),
+      );
     }
   }
 

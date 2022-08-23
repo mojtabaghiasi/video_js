@@ -1,4 +1,5 @@
-# 0.0.4
-+ Theme support added.
-+ hls quality selector support added.
+# 0.0.5
++ Theme support.
++ hls quality selector support.
 + dispose fix.
++ dart test support.
