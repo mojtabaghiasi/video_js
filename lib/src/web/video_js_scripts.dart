@@ -1,8 +1,17 @@
 class VideoJsScripts {
-  String videojsCode(String playerId, Map<String, dynamic>? options) => """
+  String videojsCode(
+    String playerId,
+    Map<String, dynamic>? options, {
+    bool qualitySelector = false,
+  }) =>
+      """
     var player = videojs('$playerId', $options,function() {
     callBackToDartSide('$playerId', 'onReady' , 'true');
-    });""";
+    });
+    ${qualitySelector ? """player.hlsQualitySelector({
+      displayCurrentQuality: true,
+    });""" : ""}
+    """;
 
   String globalAutoSetup(bool status) => """
     videojs.options.autoSetup = '$status';""";

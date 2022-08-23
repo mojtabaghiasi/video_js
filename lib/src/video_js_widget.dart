@@ -66,8 +66,10 @@ class VideoJsWidgetState extends State<VideoJsWidget> {
               ..height = widget.height.toInt(),
             html.ScriptElement()
               ..innerHtml = VideoJsScripts().videojsCode(
-                  widget.videoJsController.playerId,
-                  getVideoJsOptions(widget.videoJsController.videoJsOptions))
+                widget.videoJsController.playerId,
+                getVideoJsOptions(widget.videoJsController.videoJsOptions),
+                qualitySelector: widget.videoJsController.qualitySelector,
+              )
           ];
         return htmlElement;
       });

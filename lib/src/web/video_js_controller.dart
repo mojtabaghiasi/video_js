@@ -7,8 +7,13 @@ import 'package:video_js_themed/src/web/video_results.dart';
 class VideoJsController {
   final String playerId;
   final VideoJsOptions? videoJsOptions;
+  final bool qualitySelector;
 
-  VideoJsController(this.playerId, {this.videoJsOptions});
+  VideoJsController(
+    this.playerId, {
+    this.videoJsOptions,
+    this.qualitySelector = false,
+  });
 
   /// This function is for initial a video.js instance with options
   videoJs(Function(String) onReady, {VideoJsOptions? videoJsOptions}) {

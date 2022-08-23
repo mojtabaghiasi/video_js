@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:video_js_themed/video_js.dart';
 
 const sourceUrl =
-    'https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8';
+//'https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8';
+    'https://stream.mux.com/LpFzctSre01DFbFOcalP01gLmcGjX8rS7ZnoKcBGTeeFs.m3u8';
 
 const sourceMediaType = 'application/x-mpegURL';
 
@@ -47,7 +48,7 @@ class OptionsPageState extends State<OptionsPage> {
   String? notSupportedMessage = 'this movie type not supported';
   String? source = sourceUrl;
   String? sourceType = sourceMediaType;
-  List<double>? playbackRates = [1, 2, 3];
+  List<double>? playbackRates = [];
   bool? preferFullWindow = false;
   bool? responsive = false;
 
@@ -282,8 +283,11 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
     videoSourceController.text = sourceUrl;
     videoTypeController.text = sourceMediaType;
-    videoJsController =
-        VideoJsController('videoId', videoJsOptions: widget.videoJsOptions);
+    videoJsController = VideoJsController(
+      'videoId',
+      videoJsOptions: widget.videoJsOptions,
+      qualitySelector: true,
+    );
   }
 
   @override
