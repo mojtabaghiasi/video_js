@@ -216,23 +216,24 @@ class OptionsPageState extends State<OptionsPage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => MyHomePage(
-                            videoJsOptions: VideoJsOptions(
-                                controls: controls,
-                                loop: loop,
-                                muted: muted,
-                                aspectRatio: aspectRatio,
-                                fluid: fluid,
-                                language: language,
-                                liveui: liveUI,
-                                notSupportedMessage: notSupportedMessage,
-                                playbackRates: playbackRates,
-                                preferFullWindow: preferFullWindow,
-                                responsive: responsive,
-                                sources: [Source(sourceUrl, sourceMediaType)],
-                                suppressNotSupportedError:
-                                    suppressNotSupportedError),
-                          )),
+                    builder: (context) => MyHomePage(
+                      videoJsOptions: VideoJsOptions(
+                        controls: controls,
+                        loop: loop,
+                        muted: muted,
+                        aspectRatio: aspectRatio,
+                        fluid: fluid,
+                        language: language,
+                        liveui: liveUI,
+                        notSupportedMessage: notSupportedMessage,
+                        playbackRates: playbackRates,
+                        preferFullWindow: preferFullWindow,
+                        responsive: responsive,
+                        sources: [Source(sourceUrl, sourceMediaType)],
+                        suppressNotSupportedError: suppressNotSupportedError,
+                      ),
+                    ),
+                  ),
                 );
               },
               child: const Text(
@@ -274,8 +275,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void dispose() {
+    //videoJsController.dispose();
     super.dispose();
-    // videoJsController.dispose();
   }
 
   @override
@@ -353,6 +354,17 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  ElevatedButton(
+                      onPressed: () {
+                        videoJsController.dispose();
+                      },
+                      child: const Text(
+                        'dispose',
+                        style: TextStyle(color: Colors.white),
+                      )),
+                  const SizedBox(
+                    width: 5,
+                  ),
                   ElevatedButton(
                       onPressed: () {
                         videoJsController.play();

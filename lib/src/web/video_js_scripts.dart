@@ -17,33 +17,33 @@ class VideoJsScripts {
     videojs.options.preload = '$val';""";
 
   String onReady(String playerId) => """
-    var player = videojs('$playerId');    
+    var player = videojs.getPlayer('$playerId');    
     player.on('ready', function() {
     callBackToDartSide('$playerId', 'onReady' , 'true');
     });""";
 
   String onEnd(String playerId) => """
-    var player = videojs('$playerId');
+    var player = videojs.getPlayer('$playerId');
     player.on('ended', function() {
     callBackToDartSide('$playerId', 'onEnd' , 'true');
     });""";
 
   String dispose(String playerId) => """
-    var player = videojs('$playerId');
+    var player = videojs.getPlayer('$playerId');
     if(!player.isDisposed()){ player.dispose();}""";
 
   // String isDispose(String playerId) => """
   //   '$playerId'.isDisposed();""";
 
   String setSRCCode(String playerId, String src, String type) => """
-    var player = videojs('$playerId');
+    var player = videojs.getPlayer('$playerId');
     player.src({type: '$type', src: '$src'});""";
 
   //Array of Source Objects: To provide multiple versions of the source so that it can be played
   //using HTML5 across browsers you can use an array of source objects. Video.js will detect which
   //version is supported and load that file.
   // String setMultiSRC(String playerId, List<String> sources, List<String> types) => """
-  //   var player = videojs('$playerId');
+  //   var player = videojs.getPlayer('$playerId');
   //   myPlayer.src([
   //     {type: 'video/mp4', src: 'http://www.example.com/path/to/video.mp4'},
   //     {type: 'video/webm', src: 'http://www.example.com/path/to/video.webm'},

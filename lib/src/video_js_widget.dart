@@ -2,7 +2,7 @@ import 'dart:math';
 import 'dart:ui' as ui;
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
 import 'package:universal_html/html.dart' as html;
 import 'package:video_js_themed/src/web/video_js_scripts.dart';
 import 'package:video_js_themed/video_js.dart';
@@ -30,12 +30,17 @@ class VideoJsWidgetState extends State<VideoJsWidget> {
 
   @override
   void dispose() {
-    super.dispose();
     widget.videoJsController.dispose();
-    html.Element? ele = html.querySelector('#divId');
-    if (html.querySelector('#divId') != null) {
+    html.Element? ele = html.querySelector('#div$elementId');
+    if (html.querySelector('#div$elementId') != null) {
       ele!.remove();
     }
+
+    if (kDebugMode) {
+      print('VideoJsWidget disposed');
+    }
+
+    super.dispose();
   }
 
   @override
@@ -46,7 +51,7 @@ class VideoJsWidgetState extends State<VideoJsWidget> {
       // ignore: undefined_prefixed_name
       ui.platformViewRegistry.registerViewFactory(elementId, (int id) {
         final html.Element htmlElement = html.DivElement()
-          ..id = 'divId'
+          ..id = 'div$elementId'
           ..style.width = '100%'
           ..style.height = '100%'
           ..children = [
