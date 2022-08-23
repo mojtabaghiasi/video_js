@@ -1,6 +1,6 @@
 name: video_js_themed
 description: Video Library for Flutter, Easily use video.js in flutter web with themes support
-version: 0.0.6+1
+version: 0.0.6+2
 homepage: https://github.com/PROGrand/video_js
 issue_tracker: https://github.com/PROGrand/video_js/issues
 

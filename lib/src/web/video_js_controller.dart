@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:universal_html/html.dart' as html;
-import 'package:video_js_themed/src/models/videoJs_options.dart';
+import 'package:video_js_themed/src/models/videojs_options.dart';
 import 'package:video_js_themed/src/web/video_js_scripts.dart';
 import 'package:video_js_themed/src/web/video_results.dart';
 
