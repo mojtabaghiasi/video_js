@@ -41,6 +41,7 @@ class OptionsPageState extends State<OptionsPage> {
   bool? muted = false;
   String? aspectRatio = '16:9';
   bool? fluid = false;
+  bool? fill = false;
   String? language = 'en';
   bool? liveUI = false;
   String? notSupportedMessage = 'this movie type not supported';
@@ -96,7 +97,7 @@ class OptionsPageState extends State<OptionsPage> {
           ),
           CheckboxListTile(
             title: const Text('fluid'),
-            value: fluid,
+            value: fluid ?? false,
             onChanged: (val) {
               setState(() {
                 fluid = val;
@@ -106,8 +107,19 @@ class OptionsPageState extends State<OptionsPage> {
                 ListTileControlAffinity.leading, //  <-- leading Checkbox
           ),
           CheckboxListTile(
+            title: const Text('fill'),
+            value: fill ?? false,
+            onChanged: (val) {
+              setState(() {
+                fill = val;
+              });
+            },
+            controlAffinity:
+                ListTileControlAffinity.leading, //  <-- leading Checkbox
+          ),
+          CheckboxListTile(
             title: const Text('liveUI'),
-            value: liveUI,
+            value: liveUI ?? false,
             onChanged: (val) {
               setState(() {
                 liveUI = val;
@@ -118,7 +130,7 @@ class OptionsPageState extends State<OptionsPage> {
           ),
           CheckboxListTile(
             title: const Text('preferFullWindow'),
-            value: preferFullWindow,
+            value: preferFullWindow ?? false,
             onChanged: (val) {
               setState(() {
                 preferFullWindow = val;
@@ -129,7 +141,7 @@ class OptionsPageState extends State<OptionsPage> {
           ),
           CheckboxListTile(
             title: const Text('responsive'),
-            value: responsive,
+            value: responsive ?? false,
             onChanged: (val) {
               setState(() {
                 responsive = val;
@@ -152,7 +164,7 @@ class OptionsPageState extends State<OptionsPage> {
           ListTile(
             leading: const Text('aspectRatio'),
             title: TextField(
-              controller: TextEditingController(text: aspectRatio),
+              controller: TextEditingController(text: aspectRatio ?? '16:9'),
               onChanged: (val) {
                 aspectRatio = val;
               },
@@ -223,6 +235,7 @@ class OptionsPageState extends State<OptionsPage> {
                         muted: muted,
                         aspectRatio: aspectRatio,
                         fluid: fluid,
+                        fill: fill,
                         language: language,
                         liveui: liveUI,
                         notSupportedMessage: notSupportedMessage,

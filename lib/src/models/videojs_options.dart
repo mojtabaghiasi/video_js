@@ -25,6 +25,8 @@ class VideoJsOptions {
   /// container at the video's intrinsic aspect ratio, or at a specified aspectRatio
   final bool? fluid;
 
+  final bool? fill;
+
   /// A language code matching one of the available languages in the player. This sets the initial language
   /// for a player, but it can always be changed.
   final String? language;
@@ -67,6 +69,7 @@ class VideoJsOptions {
       this.poster,
       this.aspectRatio,
       this.fluid,
+      this.fill,
       this.language,
       this.liveui,
       this.notSupportedMessage,
@@ -101,6 +104,11 @@ class VideoJsOptions {
     if (sources != null) {
       data['sources'] = sources!.map((v) => v.toJson()).toList();
     }
+
+    if (fluid != null) data['fluid'] = fluid;
+
+    if (fill != null) data['fill'] = fill;
+
     return data;
   }
 }

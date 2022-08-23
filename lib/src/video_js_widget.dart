@@ -57,11 +57,13 @@ class VideoJsWidgetState extends State<VideoJsWidget> {
           ..children = [
             html.VideoElement()
               ..id = widget.videoJsController.playerId
-              ..style.minHeight = '100%'
-              ..style.minHeight = '100%'
-              ..style.width = '100%'
-              ..style.height = 'auto'
-              ..className = 'video-js ${widget.theme}',
+              // ..style.minHeight = '100%'
+              // ..style.minHeight = '100%'
+              // ..style.width = '100%'
+              // ..style.height = 'auto'
+              ..className = 'video-js ${widget.theme}'
+              ..width = widget.width.toInt()
+              ..height = widget.height.toInt(),
             html.ScriptElement()
               ..innerHtml = VideoJsScripts().videojsCode(
                   widget.videoJsController.playerId,
