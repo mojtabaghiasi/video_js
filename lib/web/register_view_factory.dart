@@ -3,7 +3,6 @@ import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:video_js_themed/src/view_factory_plugin.dart';
 import 'package:video_js_themed/src/web/video_js_scripts.dart';
-import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
 class ViewFactoryWeb extends ViewFactoryPlugin {
 
@@ -38,7 +37,7 @@ class ViewFactoryWeb extends ViewFactoryPlugin {
           // ..style.minHeight = '100%'
           // ..style.width = '100%'
           // ..style.height = 'auto'
-            ..className = 'video-js ${theme}'
+            ..className = 'video-js $theme'
             ..width = width.toInt()
             ..height = height.toInt(),
           html.ScriptElement()

@@ -1,4 +1,4 @@
-# 0.0.5
+# 0.0.6
 + Theme support.
 + hls quality selector support.
 + dispose fix.
