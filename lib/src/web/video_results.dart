@@ -1,9 +1,11 @@
 import 'dart:async';
-import 'dart:js';
-import 'package:video_js/src/models/result_from_videoJs.dart';
+
+import 'package:universal_html/js.dart';
+
+import 'package:video_js_themed/src/models/result_from_videoJs.dart';
 
 class VideoJsResults {
-  StreamController<ResultFromVideoJs> _onVolumeFromJsStream =
+  final StreamController<ResultFromVideoJs> _onVolumeFromJsStream =
       StreamController<ResultFromVideoJs>.broadcast();
 
   StreamController<ResultFromVideoJs> get onVolumeFromJsStream =>
@@ -34,10 +36,10 @@ class VideoJsResults {
     subscription = VideoJsResults()
         .onVolumeFromJsStream
         .stream
-        .listen((ResultFromVideoJs resulteFromVideoJs) {
-      if (playerId == resulteFromVideoJs.videoId &&
-          type == resulteFromVideoJs.type) {
-        onJsValue(resulteFromVideoJs.result);
+        .listen((ResultFromVideoJs resultFromVideoJs) {
+      if (playerId == resultFromVideoJs.videoId &&
+          type == resultFromVideoJs.type) {
+        onJsValue(resultFromVideoJs.result);
         subscription!.cancel();
       }
     });

@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:video_js/video_js.dart';
+import 'package:video_js_themed/video_js.dart';
+
+const sourceUrl =
+    'https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8';
+
+const sourceMediaType = 'application/x-mpegURL';
 
 void main() {
   // this line need for javascript's call backs
@@ -34,16 +39,13 @@ class OptionsPageState extends State<OptionsPage> {
   bool? controls = true;
   bool? loop = false;
   bool? muted = false;
-  String? poster =
-      'https://file-examples-com.github.io/uploads/2017/10/file_example_JPG_100kB.jpg';
   String? aspectRatio = '16:9';
   bool? fluid = false;
   String? language = 'en';
-  bool? liveui = false;
+  bool? liveUI = false;
   String? notSupportedMessage = 'this movie type not supported';
-  String? source =
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
-  String? sourceType = "video/mp4";
+  String? source = sourceUrl;
+  String? sourceType = sourceMediaType;
   List<double>? playbackRates = [1, 2, 3];
   bool? preferFullWindow = false;
   bool? responsive = false;
@@ -55,12 +57,12 @@ class OptionsPageState extends State<OptionsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("videoJs Options"),
+        title: const Text('videoJs Options'),
       ),
       body: ListView(
         children: [
           CheckboxListTile(
-            title: const Text("controls"),
+            title: const Text('controls'),
             value: controls,
             onChanged: (val) {
               setState(() {
@@ -71,7 +73,7 @@ class OptionsPageState extends State<OptionsPage> {
                 ListTileControlAffinity.leading, //  <-- leading Checkbox
           ),
           CheckboxListTile(
-            title: const Text("loop"),
+            title: const Text('loop'),
             value: loop,
             onChanged: (val) {
               setState(() {
@@ -82,7 +84,7 @@ class OptionsPageState extends State<OptionsPage> {
                 ListTileControlAffinity.leading, //  <-- leading Checkbox
           ),
           CheckboxListTile(
-            title: const Text("muted"),
+            title: const Text('muted'),
             value: muted,
             onChanged: (val) {
               setState(() {
@@ -93,7 +95,7 @@ class OptionsPageState extends State<OptionsPage> {
                 ListTileControlAffinity.leading, //  <-- leading Checkbox
           ),
           CheckboxListTile(
-            title: const Text("fluid"),
+            title: const Text('fluid'),
             value: fluid,
             onChanged: (val) {
               setState(() {
@@ -104,18 +106,18 @@ class OptionsPageState extends State<OptionsPage> {
                 ListTileControlAffinity.leading, //  <-- leading Checkbox
           ),
           CheckboxListTile(
-            title: const Text("liveui"),
-            value: liveui,
+            title: const Text('liveUI'),
+            value: liveUI,
             onChanged: (val) {
               setState(() {
-                liveui = val;
+                liveUI = val;
               });
             },
             controlAffinity:
                 ListTileControlAffinity.leading, //  <-- leading Checkbox
           ),
           CheckboxListTile(
-            title: const Text("preferFullWindow"),
+            title: const Text('preferFullWindow'),
             value: preferFullWindow,
             onChanged: (val) {
               setState(() {
@@ -126,7 +128,7 @@ class OptionsPageState extends State<OptionsPage> {
                 ListTileControlAffinity.leading, //  <-- leading Checkbox
           ),
           CheckboxListTile(
-            title: const Text("responsive"),
+            title: const Text('responsive'),
             value: responsive,
             onChanged: (val) {
               setState(() {
@@ -137,7 +139,7 @@ class OptionsPageState extends State<OptionsPage> {
                 ListTileControlAffinity.leading, //  <-- leading Checkbox
           ),
           CheckboxListTile(
-            title: const Text("suppressNotSupportedError"),
+            title: const Text('suppressNotSupportedError'),
             value: suppressNotSupportedError,
             onChanged: (val) {
               setState(() {
@@ -148,16 +150,7 @@ class OptionsPageState extends State<OptionsPage> {
                 ListTileControlAffinity.leading, //  <-- leading Checkbox
           ),
           ListTile(
-            leading: const Text("poster"),
-            title: TextField(
-              controller: TextEditingController(text: poster),
-              onChanged: (val) {
-                poster = val;
-              },
-            ),
-          ),
-          ListTile(
-            leading: const Text("aspectRatio"),
+            leading: const Text('aspectRatio'),
             title: TextField(
               controller: TextEditingController(text: aspectRatio),
               onChanged: (val) {
@@ -166,7 +159,7 @@ class OptionsPageState extends State<OptionsPage> {
             ),
           ),
           ListTile(
-            leading: const Text("language"),
+            leading: const Text('language'),
             title: TextField(
               controller: TextEditingController(text: language),
               onChanged: (val) {
@@ -175,7 +168,7 @@ class OptionsPageState extends State<OptionsPage> {
             ),
           ),
           ListTile(
-            leading: const Text("notSupportedMessage"),
+            leading: const Text('notSupportedMessage'),
             title: TextField(
               controller: TextEditingController(text: notSupportedMessage),
               onChanged: (val) {
@@ -184,7 +177,7 @@ class OptionsPageState extends State<OptionsPage> {
             ),
           ),
           ListTile(
-            leading: const Text("source"),
+            leading: const Text('source'),
             title: TextField(
               controller: TextEditingController(text: source),
               onChanged: (val) {
@@ -193,7 +186,7 @@ class OptionsPageState extends State<OptionsPage> {
             ),
           ),
           ListTile(
-            leading: const Text("source type"),
+            leading: const Text('source type'),
             title: TextField(
               controller: TextEditingController(text: sourceType),
               onChanged: (val) {
@@ -202,14 +195,15 @@ class OptionsPageState extends State<OptionsPage> {
             ),
           ),
           ListTile(
-            leading: const Text("playbackRates"),
+            leading: const Text('playbackRates'),
             title: TextField(
               controller: TextEditingController(text: '1,2,3'),
               onChanged: (val) {
                 playbackRates!.clear();
                 val.split(',').forEach((element) {
-                  if (element != '')
+                  if (element != '') {
                     playbackRates!.add(int.parse(element).toDouble());
+                  }
                 });
               },
             ),
@@ -227,27 +221,22 @@ class OptionsPageState extends State<OptionsPage> {
                                 controls: controls,
                                 loop: loop,
                                 muted: muted,
-                                poster: poster,
                                 aspectRatio: aspectRatio,
                                 fluid: fluid,
                                 language: language,
-                                liveui: liveui,
+                                liveui: liveUI,
                                 notSupportedMessage: notSupportedMessage,
                                 playbackRates: playbackRates,
                                 preferFullWindow: preferFullWindow,
                                 responsive: responsive,
-                                sources: [
-                                  Source(
-                                      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-                                      "video/mp4")
-                                ],
+                                sources: [Source(sourceUrl, sourceMediaType)],
                                 suppressNotSupportedError:
                                     suppressNotSupportedError),
                           )),
                 );
               },
               child: const Text(
-                "Navigate to video page",
+                'Navigate to video page',
                 style: TextStyle(color: Colors.white),
               )),
           const SizedBox(
@@ -269,7 +258,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String playerId = "videoId";
+  String playerId = 'videoId';
   TextEditingController videoSourceController = TextEditingController();
   TextEditingController videoTypeController = TextEditingController();
   late VideoJsController videoJsController;
@@ -277,11 +266,10 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    videoSourceController.text =
-        "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
-    videoTypeController.text = "video/mp4";
+    videoSourceController.text = sourceUrl;
+    videoTypeController.text = sourceMediaType;
     videoJsController =
-        VideoJsController("videoId", videoJsOptions: widget.videoJsOptions);
+        VideoJsController('videoId', videoJsOptions: widget.videoJsOptions);
   }
 
   @override
@@ -296,7 +284,7 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           // Here we take the value from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
-          title: const Text("videojs example"),
+          title: const Text('videojs with theme example'),
         ),
         body: SingleChildScrollView(
             child: Padding(
@@ -312,6 +300,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     videoJsController: videoJsController,
                     height: MediaQuery.of(context).size.width / 2.5,
                     width: MediaQuery.of(context).size.width / 1.5,
+                    theme: 'vjs-theme-fantasy',
                   )
                 ],
               ),
@@ -327,7 +316,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     height: 50,
                     child: TextField(
                       controller: videoSourceController,
-                      decoration: const InputDecoration(hintText: "video"),
+                      decoration: const InputDecoration(hintText: 'video'),
                     ),
                   ),
                   const SizedBox(
@@ -338,7 +327,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     height: 50,
                     child: TextField(
                       controller: videoTypeController,
-                      decoration: const InputDecoration(hintText: "type"),
+                      decoration: const InputDecoration(hintText: 'type'),
                     ),
                   ),
                   const SizedBox(
@@ -352,7 +341,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             type: videoTypeController.text.toString());
                       },
                       child: const Text(
-                        "set source",
+                        'set source',
                         style: TextStyle(color: Colors.white),
                       )),
                 ],
@@ -369,7 +358,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         videoJsController.play();
                       },
                       child: const Text(
-                        "play",
+                        'play',
                         style: TextStyle(color: Colors.white),
                       )),
                   const SizedBox(
@@ -380,7 +369,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         videoJsController.pause();
                       },
                       child: const Text(
-                        "pause",
+                        'pause',
                         style: TextStyle(color: Colors.white),
                       )),
                   const SizedBox(
@@ -392,13 +381,13 @@ class _MyHomePageState extends State<MyHomePage> {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               duration: const Duration(milliseconds: 500),
                               content: Text(
-                                "Pause status : $val",
+                                'Pause status : $val',
                                 style: const TextStyle(color: Colors.white),
                               )));
                         });
                       },
                       child: const Text(
-                        "is pause",
+                        'is pause',
                         style: TextStyle(color: Colors.white),
                       )),
                   const SizedBox(
@@ -410,13 +399,13 @@ class _MyHomePageState extends State<MyHomePage> {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               duration: const Duration(milliseconds: 500),
                               content: Text(
-                                "Current video time : $val",
+                                'Current video time : $val',
                                 style: const TextStyle(color: Colors.white),
                               )));
                         });
                       },
                       child: const Text(
-                        "Current video time",
+                        'Current video time',
                         style: TextStyle(color: Colors.white),
                       )),
                 ],
@@ -434,12 +423,12 @@ class _MyHomePageState extends State<MyHomePage> {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                 duration: const Duration(milliseconds: 500),
                                 content: Text(
-                                  "volume is : $val",
+                                  'volume is : $val',
                                   style: const TextStyle(color: Colors.white),
                                 ))));
                       },
                       child: const Text(
-                        "Get volume",
+                        'Get volume',
                         style: TextStyle(color: Colors.white),
                       )),
                   const SizedBox(
@@ -447,10 +436,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   ElevatedButton(
                       onPressed: () {
-                        videoJsController.setVolume("0.5");
+                        videoJsController.setVolume('0.5');
                       },
                       child: const Text(
-                        "Set volume to 0.5",
+                        'Set volume to 0.5',
                         style: TextStyle(color: Colors.white),
                       )),
                 ],
@@ -467,7 +456,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         videoJsController.toggleMute();
                       },
                       child: const Text(
-                        "Toggle mute",
+                        'Toggle mute',
                         style: TextStyle(color: Colors.white),
                       )),
                   const SizedBox(
@@ -479,13 +468,13 @@ class _MyHomePageState extends State<MyHomePage> {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               duration: const Duration(milliseconds: 500),
                               content: Text(
-                                "Mute status : $val",
+                                'Mute status : $val',
                                 style: const TextStyle(color: Colors.white),
                               )));
                         });
                       },
                       child: const Text(
-                        "Mute status",
+                        'Mute status',
                         style: TextStyle(color: Colors.white),
                       )),
                 ],
@@ -502,7 +491,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         videoJsController.toggleFullScreen();
                       },
                       child: const Text(
-                        "Toggle Full Screen",
+                        'Toggle Full Screen',
                         style: TextStyle(color: Colors.white),
                       )),
                   const SizedBox(
@@ -514,13 +503,13 @@ class _MyHomePageState extends State<MyHomePage> {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               duration: const Duration(milliseconds: 500),
                               content: Text(
-                                "Full screen status : $val",
+                                'Full screen status : $val',
                                 style: const TextStyle(color: Colors.white),
                               )));
                         });
                       },
                       child: const Text(
-                        "Full screen status",
+                        'Full screen status',
                         style: TextStyle(color: Colors.white),
                       )),
                 ],
@@ -537,7 +526,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         videoJsController.requestFullScreen();
                       },
                       child: const Text(
-                        "request full screen",
+                        'request full screen',
                         style: TextStyle(color: Colors.white),
                       )),
                   const SizedBox(
@@ -548,7 +537,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         videoJsController.exitFullScreen();
                       },
                       child: const Text(
-                        "exite Full Screen",
+                        'exit Full Screen',
                         style: TextStyle(color: Colors.white),
                       )),
                 ],
@@ -562,10 +551,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   ElevatedButton(
                       onPressed: () {
-                        videoJsController.setCurrentTime("100");
+                        videoJsController.setCurrentTime('100');
                       },
                       child: const Text(
-                        "Set video time to 100 sec",
+                        'Set video time to 100 sec',
                         style: TextStyle(color: Colors.white),
                       )),
                   const SizedBox(
@@ -577,13 +566,13 @@ class _MyHomePageState extends State<MyHomePage> {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               duration: const Duration(milliseconds: 500),
                               content: Text(
-                                "Duration time : $val",
+                                'Duration time : $val',
                                 style: const TextStyle(color: Colors.white),
                               )));
                         });
                       },
                       child: const Text(
-                        "Duration",
+                        'Duration',
                         style: TextStyle(color: Colors.white),
                       )),
                 ],
@@ -601,13 +590,13 @@ class _MyHomePageState extends State<MyHomePage> {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               duration: const Duration(milliseconds: 500),
                               content: Text(
-                                "Remain time : $val",
+                                'Remain time : $val',
                                 style: const TextStyle(color: Colors.white),
                               )));
                         });
                       },
                       child: const Text(
-                        "Remain time",
+                        'Remain time',
                         style: TextStyle(color: Colors.white),
                       )),
                   const SizedBox(
@@ -619,13 +608,13 @@ class _MyHomePageState extends State<MyHomePage> {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               duration: const Duration(milliseconds: 500),
                               content: Text(
-                                "Buffer percent : $val",
+                                'Buffer percent : $val',
                                 style: const TextStyle(color: Colors.white),
                               )));
                         });
                       },
                       child: const Text(
-                        "Buffer percent",
+                        'Buffer percent',
                         style: TextStyle(color: Colors.white),
                       )),
                 ],
@@ -640,10 +629,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   ElevatedButton(
                       onPressed: () {
                         videoJsController.setPoster(
-                            "https://file-examples-com.github.io/uploads/2017/10/file_example_JPG_100kB.jpg");
+                            'https://file-examples-com.github.io/uploads/2017/10/file_example_JPG_100kB.jpg');
                       },
                       child: const Text(
-                        "Set video poster",
+                        'Set video poster',
                         style: TextStyle(color: Colors.white),
                       )),
                   const SizedBox(
@@ -655,13 +644,13 @@ class _MyHomePageState extends State<MyHomePage> {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               duration: const Duration(milliseconds: 500),
                               content: Text(
-                                "Video poster : $val",
+                                'Video poster : $val',
                                 style: const TextStyle(color: Colors.white),
                               )));
                         });
                       },
                       child: const Text(
-                        "Get video poster",
+                        'Get video poster',
                         style: TextStyle(color: Colors.white),
                       )),
                 ],

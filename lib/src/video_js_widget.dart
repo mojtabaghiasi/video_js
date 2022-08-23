@@ -1,24 +1,25 @@
-import 'package:flutter/foundation.dart' show kIsWeb;
 import 'dart:math';
-import 'package:flutter/cupertino.dart';
-import 'package:video_js/src/web/video_js_controller.dart';
-import 'package:video_js/src/web/video_js_scripts.dart';
-import 'dart:html' as html;
 import 'dart:ui' as ui;
 
-import 'package:video_js/video_js.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:universal_html/html.dart' as html;
+import 'package:video_js_themed/src/web/video_js_scripts.dart';
+import 'package:video_js_themed/video_js.dart';
 
 class VideoJsWidget extends StatefulWidget {
   final VideoJsController videoJsController;
   final double height;
   final double width;
+  final String theme;
 
-  const VideoJsWidget(
-      {Key? key,
-      required this.height,
-      required this.width,
-      required this.videoJsController})
-      : super(key: key);
+  const VideoJsWidget({
+    Key? key,
+    required this.height,
+    required this.width,
+    required this.videoJsController,
+    this.theme = 'vjs-default-skin',
+  }) : super(key: key);
 
   @override
   VideoJsWidgetState createState() => VideoJsWidgetState();
@@ -31,8 +32,8 @@ class VideoJsWidgetState extends State<VideoJsWidget> {
   void dispose() {
     super.dispose();
     widget.videoJsController.dispose();
-    html.Element? ele = html.querySelector("#divId");
-    if (html.querySelector("#divId") != null) {
+    html.Element? ele = html.querySelector('#divId');
+    if (html.querySelector('#divId') != null) {
       ele!.remove();
     }
   }
@@ -45,17 +46,17 @@ class VideoJsWidgetState extends State<VideoJsWidget> {
       // ignore: undefined_prefixed_name
       ui.platformViewRegistry.registerViewFactory(elementId, (int id) {
         final html.Element htmlElement = html.DivElement()
-          ..id = "divId"
+          ..id = 'divId'
           ..style.width = '100%'
           ..style.height = '100%'
           ..children = [
             html.VideoElement()
               ..id = widget.videoJsController.playerId
-              ..style.minHeight = "100%"
-              ..style.minHeight = "100%"
-              ..style.width = "100%"
-              ..style.height = "auto"
-              ..className = "video-js vjs-default-skin",
+              ..style.minHeight = '100%'
+              ..style.minHeight = '100%'
+              ..style.width = '100%'
+              ..style.height = 'auto'
+              ..className = 'video-js ${widget.theme}',
             html.ScriptElement()
               ..innerHtml = VideoJsScripts().videojsCode(
                   widget.videoJsController.playerId,
@@ -89,8 +90,8 @@ class VideoJsWidgetState extends State<VideoJsWidget> {
           ? HtmlElementView(
               viewType: elementId,
             )
-          : Center(
-              child: Text("Video_js plugin just supported on web"),
+          : const Center(
+              child: Text('Video_js plugin just supported on web'),
             ),
     );
   }

@@ -1,6 +1,6 @@
 class VideoJsScripts {
   String videojsCode(String playerId, Map<String, dynamic>? options) => """
-    var player = videojs('$playerId', ${options},function() {
+    var player = videojs('$playerId', $options,function() {
     callBackToDartSide('$playerId', 'onReady' , 'true');
     });""";
 
@@ -42,7 +42,7 @@ class VideoJsScripts {
   //Array of Source Objects: To provide multiple versions of the source so that it can be played
   //using HTML5 across browsers you can use an array of source objects. Video.js will detect which
   //version is supported and load that file.
-  // String setMultiSRC(String playerId, List<String> sourses, List<String> types) => """
+  // String setMultiSRC(String playerId, List<String> sources, List<String> types) => """
   //   var player = videojs('$playerId');
   //   myPlayer.src([
   //     {type: 'video/mp4', src: 'http://www.example.com/path/to/video.mp4'},

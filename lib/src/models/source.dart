@@ -8,9 +8,9 @@ class Source {
   Source(this.src, this.type);
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['src'] = "\"${this.src}\"";
-    data['type'] = "\"${this.type}\"";
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['src'] = '"$src"';
+    data['type'] = '"$type"';
     return data;
   }
 }

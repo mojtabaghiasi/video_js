@@ -1,8 +1,8 @@
-# Flutter Video.js player
+# Flutter Video.js player with theme support
 
-Flutter plugin for use [Video.js](https://github.com/videojs/video.js) in flutter web
+Flutter plugin for use [Video.js](https://github.com/videojs/video.js) in flutter web with theme support
 
-<img src="https://github.com/mojtabaghiasi/video_js/blob/master/doc/demo_image.png?raw=true" width="500">
+<img src="https://github.com/PROGrand/video_js/blob/master/doc/demo_image.png?raw=true" width="500">
 
 
 ## Installation
@@ -11,23 +11,19 @@ Add it to your package's pubspec.yaml file
 
 ```yml
 dependencies:
-  video_js: ^0.1.2
+  video_js_themed: ^0.0.1
 ```
 
 ### Web
 
-To implement you need to include Video.js library in the index.html of web section
+To implement you need to include Video.js with theme library in the index.html of web section
 
 ```javascript
-  <link id="videojscss" rel="stylesheet" href="https://unpkg.com/video.js/dist/video-js.css">
-    <script src="https://unpkg.com/video.js/dist/video.js"></script>
+    <link href="https://unpkg.com/video.js@7.20.2/dist/video-js.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/@videojs/themes@1/dist/fantasy/index.css" rel="stylesheet">
+    <script src="https://unpkg.com/video.js@7.20.2/dist/video.min.js"></script>
 ```
 
-To support HLS formats you need to add this script too
-
-```javascript
-  <script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js"></script>
-```
 
 Example:
 
@@ -49,14 +45,14 @@ Example:
 	<title>example</title>
 
 	<link rel="manifest" href="manifest.json">
-	<link id="videojscss" rel="stylesheet" href="https://unpkg.com/video.js/dist/video-js.css">    <!-- Add this line-->
-	<script src="https://unpkg.com/video.js/dist/video.js"></script>                               <!-- Add this line-->
-	<script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js"></script>      <!-- Add this line-->
+    <link href="https://unpkg.com/video.js@7.20.2/dist/video-js.min.css" rel="stylesheet">          <!-- Add this line-->
+    <link href="https://unpkg.com/@videojs/themes@1/dist/fantasy/index.css" rel="stylesheet">       <!-- Add this line-->
+    <script src="https://unpkg.com/video.js@7.20.2/dist/video.min.js"></script>                     <!-- Add this line-->
 </head>
 ```
 
 *Note*
-See usage [example](https://github.com/mojtabaghiasi/video_js/tree/master/example) in video_js plugin
+See usage [example](https://github.com/PROGrand/video_js/tree/master/example) in video_js plugin
 
 Then do this in main method :
 
@@ -71,7 +67,7 @@ void main() {
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:videojs/videojs.dart';
+import 'package:videojs_themed/videojs.dart';
 
 void main(){
   VideoJsResults().init();
@@ -93,29 +89,29 @@ class _VideoAppState extends State<VideoApp> {
         controls: true,
         loop: false,
         muted: false,
-        poster: 'https://file-examples-com.github.io/uploads/2017/10/file_example_JPG_100kB.jpg',
         aspectRatio: '16:9',
         fluid: false,
         language: 'en',
         liveui: false,
         notSupportedMessage: 'this movie type not supported',
-        playbackRates: [1, 2, 3],
         preferFullWindow: false,
         responsive: false,
-        sources: [Source("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4", "video/mp4")],
+        sources: [Source("https://multiplatform-f.akamaihd.net/i/multi/will/bunny/big_buck_bunny_,640x360_400,640x360_700,640x360_1000,950x540_1500,.f4v.csmil/master.m3u8",
+            "application/x-mpegURL")],
         suppressNotSupportedError: false));
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Video JS Demo',
+      title: 'Video JS with theme Demo',
       home: Scaffold(
         body: Center(
             child: VideoJsWidget(
               videoJsController: _videoJsController,
               height: MediaQuery.of(context).size.width / 2.5,
               width: MediaQuery.of(context).size.width / 1.5,
+              theme: 'vjs-theme-fantasy'
             )
         ),
         floatingActionButton: FloatingActionButton(
@@ -136,6 +132,7 @@ class _VideoAppState extends State<VideoApp> {
 
 
 *Note*: This plugin is still under development, and some APIs might not be available yet.
-[Feedback welcome](https://github.com/mojtabaghiasi/video_js/issues) and
-[Pull Requests](https://github.com/mojtabaghiasi/video_js/pulls) are most welcome!
+[Feedback welcome](https://github.com/PROGrand/video_js/issues) and
+[Pull Requests](https://github.com/PROGrand/video_js/pulls) are most welcome!
+[Original video_js](https://github.com/mojtabaghiasi/video_js)
 
