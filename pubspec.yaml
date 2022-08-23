@@ -1,12 +1,12 @@
 name: video_js_themed
-description: Video Library for Flutter, Easily use famuse video.js in flutter web with themes support
-version: 0.0.6
+description: Video Library for Flutter, Easily use video.js in flutter web with themes support
+version: 0.0.6+1
 homepage: https://github.com/PROGrand/video_js
 issue_tracker: https://github.com/PROGrand/video_js/issues
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
-  flutter: ">=1.20.0"
+  flutter: ">=2.5.0"
 
 dependencies:
   flutter:
@@ -27,9 +27,3 @@ flutter:
       web:
         pluginClass: ViewFactoryWeb
         fileName: web/register_view_factory.dart
-      macos:
-        default_package: video_js_themed
-      windows:
-        default_package: video_js_themed
-      linux:
-        default_package: video_js_themed
